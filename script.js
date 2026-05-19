@@ -1,90 +1,144 @@
 /* PARTICLES */
+
 particlesJS("particles-js", {
+
   particles: {
-    number: { value: 50 },
-    color: { value: "#ff0000" },
-    shape: { type: "circle" },
-    opacity: { value: 0.5 },
-    size: { value: 3 },
-    move: { enable: true, speed: 2 }
+
+    number: {
+      value: 50
+    },
+
+    color: {
+      value: "#ff0000"
+    },
+
+    shape: {
+      type: "circle"
+    },
+
+    opacity: {
+      value: 0.5
+    },
+
+    size: {
+      value: 3
+    },
+
+    move: {
+      enable: true,
+      speed: 2
+    }
+
   }
-});
-
-/* ===== ELEMENTOS ===== */
-
-const menu = document.getElementById("menu");
-
-const recruitBtn = document.getElementById("recruitBtn");
-const aboutBtn = document.getElementById("aboutBtn");
-
-/* ===== BUG FIX DEFINITIVO ===== */
-
-/* RECRUTAMENTO */
-recruitBtn.addEventListener("mouseover", () => {
-
-  menu.style.transform =
-    "rotateY(-8deg) rotateX(-4deg) scale(1.05)";
 
 });
 
-/* SOBRE */
-aboutBtn.addEventListener("mouseover", () => {
+/* ELEMENTOS */
 
-  menu.style.transform =
-    "rotateY(8deg) rotateX(4deg) scale(1.05)";
+const menu =
+  document.getElementById("menu");
 
-});
+const recruitBtn =
+  document.getElementById("recruitBtn");
 
-/* ===== DISCORD ===== */
+const aboutBtn =
+  document.getElementById("aboutBtn");
 
-/* RESET */
-document.querySelector(".buttons").addEventListener("mouseleave", () => {
+/* CAMERA */
 
-  menu.style.transform =
-    "rotateY(0deg) rotateX(0deg) scale(1)";
+recruitBtn.addEventListener(
+  "mouseover",
+  () => {
 
-});
+    menu.style.transform =
+      "rotateY(-8deg) scale(1.03)";
+
+  }
+);
+
+aboutBtn.addEventListener(
+  "mouseover",
+  () => {
+
+    menu.style.transform =
+      "rotateY(8deg) scale(1.03)";
+
+  }
+);
+
+document
+.querySelector(".buttons")
+.addEventListener(
+  "mouseleave",
+  () => {
+
+    menu.style.transform =
+      "rotateY(0deg) scale(1)";
+
+  }
+);
 
 /* CLICKS */
 
-recruitBtn.addEventListener("click", openRecruit);
-aboutBtn.addEventListener("click", openAbout);
+recruitBtn.addEventListener(
+  "click",
+  openRecruit
+);
 
-/* ===== MODAIS ===== */
+aboutBtn.addEventListener(
+  "click",
+  openAbout
+);
+
+/* MODAIS */
 
 function openRecruit() {
-  document.getElementById("recruitModal").style.display = "flex";
+
+  document.getElementById(
+    "recruitModal"
+  ).style.display = "flex";
+
 }
 
 function closeRecruit() {
-  document.getElementById("recruitModal").style.display = "none";
+
+  document.getElementById(
+    "recruitModal"
+  ).style.display = "none";
+
 }
 
 function openAbout() {
-  document.getElementById("aboutModal").style.display = "flex";
+
+  document.getElementById(
+    "aboutModal"
+  ).style.display = "flex";
+
 }
 
 function closeAbout() {
-  document.getElementById("aboutModal").style.display = "none";
+
+  document.getElementById(
+    "aboutModal"
+  ).style.display = "none";
+
 }
+
+/* DISCORD */
 
 function openDiscord() {
 
   window.open(
-    "https://discord.gg/gdSnKZKMrf",
+    "https://discord.gg/SEUCONVITE",
     "_blank"
   );
 
 }
 
-
-function closeDiscord() {
-  document.getElementById("discordModal").style.display = "none";
-}
-
-/* ===== MEMBROS ===== */
+/* MEMBROS */
 
 const members = [
+
   {
     name: "Notch",
     role: "Líder"
@@ -99,48 +153,62 @@ const members = [
     name: "Herobrine",
     role: "Elite"
   }
+
 ];
 
 function openMembers() {
 
-  document.getElementById("membersModal").style.display = "flex";
+  document.getElementById(
+    "membersModal"
+  ).style.display = "flex";
 
-  const grid = document.getElementById("membersGrid");
+  const grid =
+    document.getElementById(
+      "membersGrid"
+    );
 
   grid.innerHTML = "";
 
   members.forEach(member => {
 
-    const card = document.createElement("div");
+    const card =
+      document.createElement("div");
 
-    card.className = "member-card";
+    card.className =
+      "member-card";
 
     card.innerHTML = `
+
       <img src="https://mc-heads.net/avatar/${member.name}/100">
 
       <h3>${member.name}</h3>
 
-      <div class="role">${member.role}</div>
+      <div class="role">
+        ${member.role}
+      </div>
+
     `;
 
     grid.appendChild(card);
 
   });
+
 }
 
 function closeMembers() {
-  document.getElementById("membersModal").style.display = "none";
+
+  document.getElementById(
+    "membersModal"
+  ).style.display = "none";
+
 }
 
-/* ===== WEBHOOK ===== */
+/* WEBHOOK */
 
-/*
-  COLOQUE SUA WEBHOOK AQUI
-*/
+const WEBHOOK_URL =
+  "COLE_SUA_WEBHOOK";
 
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1506070001675931788/h2NAckd5uRZGlrBStQlmIS3Kz7-reI9SNUcNb272BimcuRf7cIRED3HQAkF1z43OzkQk";
-
-/* ===== RECRUTAMENTO ===== */
+/* RECRUTAMENTO */
 
 async function sendRecruit() {
 
@@ -156,16 +224,19 @@ async function sendRecruit() {
   const reason =
     document.getElementById("reason").value;
 
-  /* VALIDAÇÃO */
+  if(
+    !nick ||
+    !age ||
+    !role ||
+    !reason
+  ) {
 
-  if(!nick || !age || !role || !reason) {
+    alert(
+      "Preencha todos os campos!"
+    );
 
-    alert("Preencha todos os campos!");
     return;
-
   }
-
-  /* EMBED */
 
   const payload = {
 
@@ -173,34 +244,32 @@ async function sendRecruit() {
 
       {
 
-        title: "📥 Novo Recrutamento",
+        title:
+          "📥 Novo Recrutamento",
 
-        color: 16711680,
+        color:
+          16711680,
 
         fields: [
 
           {
             name: "👤 Nick",
-            value: nick,
-            inline: false
+            value: nick
           },
 
           {
             name: "🎂 Idade",
-            value: age,
-            inline: false
+            value: age
           },
 
           {
             name: "⚔ Função",
-            value: role,
-            inline: false
+            value: role
           },
 
           {
             name: "📝 Motivo",
-            value: reason,
-            inline: false
+            value: reason
           }
 
         ],
@@ -209,7 +278,8 @@ async function sendRecruit() {
           text: "VALK HUB"
         },
 
-        timestamp: new Date()
+        timestamp:
+          new Date()
 
       }
 
@@ -219,28 +289,44 @@ async function sendRecruit() {
 
   try {
 
-    await fetch(WEBHOOK_URL, {
+    await fetch(
+      WEBHOOK_URL,
+      {
 
-      method: "POST",
+        method: "POST",
 
-      headers: {
-        "Content-Type": "application/json"
-      },
+        headers: {
+          "Content-Type":
+            "application/json"
+        },
 
-      body: JSON.stringify(payload)
+        body:
+          JSON.stringify(payload)
 
-    });
+      }
+    );
 
-    alert("Recrutamento enviado!");
+    alert(
+      "Recrutamento enviado!"
+    );
 
     closeRecruit();
 
-    /* LIMPAR */
+    document.getElementById(
+      "nick"
+    ).value = "";
 
-    document.getElementById("nick").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("role").value = "";
-    document.getElementById("reason").value = "";
+    document.getElementById(
+      "age"
+    ).value = "";
+
+    document.getElementById(
+      "role"
+    ).value = "";
+
+    document.getElementById(
+      "reason"
+    ).value = "";
 
   }
 
@@ -248,7 +334,9 @@ async function sendRecruit() {
 
     console.error(err);
 
-    alert("Erro ao enviar webhook.");
+    alert(
+      "Erro ao enviar webhook."
+    );
 
   }
 
