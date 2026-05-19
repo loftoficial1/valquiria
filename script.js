@@ -10,56 +10,60 @@ particlesJS("particles-js", {
   }
 });
 
-/* SONS */
-const hoverSound = document.getElementById("hoverSound");
-const clickSound = document.getElementById("clickSound");
-
-function playHover(){
-  hoverSound.currentTime = 0;
-  hoverSound.volume = 0.3;
-  hoverSound.play();
-}
-
-function playClick(){
-  clickSound.currentTime = 0;
-  clickSound.volume = 0.5;
-  clickSound.play();
-}
-
 /* MODAIS */
-function openRecruit(){ document.getElementById("recruitModal").style.display="flex"; }
-function closeRecruit(){ document.getElementById("recruitModal").style.display="none"; }
+function openRecruit(){
+  document.getElementById("recruitModal").style.display = "flex";
+}
 
-function openAbout(){ document.getElementById("aboutModal").style.display="flex"; }
-function closeAbout(){ document.getElementById("aboutModal").style.display="none"; }
+function closeRecruit(){
+  document.getElementById("recruitModal").style.display = "none";
+}
+
+function openAbout(){
+  document.getElementById("aboutModal").style.display = "flex";
+}
+
+function closeAbout(){
+  document.getElementById("aboutModal").style.display = "none";
+}
 
 function openMembers(){
-  document.getElementById("membersModal").style.display="flex";
+  const modal = document.getElementById("membersModal");
+  modal.style.display = "flex";
 
   const grid = document.getElementById("membersGrid");
   grid.innerHTML = "";
 
   const members = [
-    { name: "Notch" },
-    { name: "Steve" },
-    { name: "Herobrine" }
+    "Notch",
+    "Steve",
+    "Herobrine"
   ];
 
-  members.forEach(m => {
-    const div = document.createElement("div");
-    div.className = "card";
-    div.innerHTML = `
-      <img src="https://mc-heads.net/avatar/${m.name}/100">
-      <p>${m.name}</p>
+  members.forEach(name => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="https://mc-heads.net/avatar/${name}/100">
+      <p>${name}</p>
     `;
-    grid.appendChild(div);
+
+    grid.appendChild(card);
   });
 }
 
-function closeMembers(){ document.getElementById("membersModal").style.display="none"; }
+function closeMembers(){
+  document.getElementById("membersModal").style.display = "none";
+}
 
-function openDiscord(){ document.getElementById("discordModal").style.display="flex"; }
-function closeDiscord(){ document.getElementById("discordModal").style.display="none"; }
+function openDiscord(){
+  document.getElementById("discordModal").style.display = "flex";
+}
+
+function closeDiscord(){
+  document.getElementById("discordModal").style.display = "none";
+}
 
 /* RECRUTAMENTO */
 function sendRecruit(){
@@ -68,10 +72,10 @@ function sendRecruit(){
   const reason = document.getElementById("reason").value;
 
   if(!nick || !age || !reason){
-    alert("Preencha tudo!");
+    alert("Preencha todos os campos!");
     return;
   }
 
-  alert("Enviado!");
+  alert("Enviado com sucesso!");
   closeRecruit();
 }
