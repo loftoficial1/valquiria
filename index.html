@@ -1,343 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-    content="width=device-width">
-
-    <title>VALK</title>
-
-    <link rel="stylesheet"
-    href="style.css">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clan RB</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
 
-
-
-<!-- HOME -->
-
-<section class="hero">
-
-    <h1>VALK</h1>
-
-
-    <p>
-
-        um dos melhores clans do survival
-
-    </p>
-
-
-
-    <div class="buttons">
-
-
-        <!-- RECRUTAMENTO -->
-
-        <a
-
-        class="mainBtn"
-
-        href="#"
-
-        onclick="abrirForm()">
-
-            RECRUTAMENTO
-
-        </a>
-
-
-
-        <!-- SOBRE -->
-
-        <a
-
-        class="secondBtn"
-
-        href="sobre.html">
-
-            SOBRE
-
-        </a>
-
-
-    </div>
-
-
-</section>
-
-
-
-
-
-<!-- MODAL -->
-
-<div
-id="recruitModal"
-class="modal">
-
-
-
-    <div class="modalBox">
-
-
-        <h1>RECRUTAMENTO</h1>
-
-
-
-        <!-- nick -->
-
-        <input
-        type="text"
-
-        id="nick"
-
-        placeholder="Seu nick">
-
-
-
-        <!-- função -->
-
-        <select id="funcao">
-
-            <option>PVP</option>
-
-            <option>FARM MAKER</option>
-
-            <option>POT MAKER</option>
-
-        </select>
-
-
-
-        <!-- descrição -->
-
-        <textarea
-
-        id="descricao"
-
-        placeholder="Fale sobre você"></textarea>
-        <!-- motivo -->
-
-        id="motivo"
-        placeholder="Por que quer entrar na VALK?"></textarea>
-        <!-- enviar -->
-
-        <button
-
-        onclick="enviarForm()"
-
-        class="discordBtn">
-
-            ENVIAR
-
-        </button>
-
-
-
-
-        <!-- fechar -->
-
-        <button
-
-        onclick="fecharForm()"
-
-        class="closeBtn">
-
-            FECHAR
-
-        </button>
-
-
-    </div>
-
-
-</div>
-
-
-
-
-
-<script>
-
-function abrirForm(){
-
-    document
-    .getElementById("recruitModal")
-    .style.display = "flex"
-
-}
-
-
-
-function fecharForm(){
-
-    document
-    .getElementById("recruitModal")
-    .style.display = "none"
-
-}
-
-
-
-
-async function enviarForm(){
-
-
-    let nick =
-    document
-    .getElementById("nick")
-    .value
-
-
-
-    let funcao =
-    document
-    .getElementById("funcao")
-    .value
-
-
-
-    let descricao =
-    document
-    .getElementById("descricao")
-    .value
-
-
-
-    let motivo =
-    document
-    .getElementById("motivo")
-    .value
-
-
-
-
-    if(
-        nick == "" ||
-        descricao == "" ||
-        motivo == ""
-    ){
-
-        alert("Preencha todos os campos")
-
-        return
-
-    }
-
-
-
-
-    let webhook = "https://discord.com/api/webhooks/1506070001675931788/h2NAckd5uRZGlrBStQlmIS3Kz7-reI9SNUcNb272BimcuRf7cIRED3HQAkF1z43OzkQk"
-
-
-
-
-    let mensagem = {
-
-        embeds:[{
-
-            title:
-            "⚔️ NOVO RECRUTAMENTO VALK ⚔️",
-
-            color:0xff003c,
-
-
-
-            fields:[
-
-                {
-
-                    name:
-                    "👤 NICK DO JOGADOR",
-
-                    value:nick
-
-                },
-
-
-
-                {
-
-                    name:
-                    "⚔️ FUNÇÃO",
-
-                    value:funcao
-
-                },
-
-
-
-                {
-
-                    name:
-                    "📜 DESCRIÇÃO",
-
-                    value:descricao
-
-                },
-
-
-
-                {
-
-                    name:
-                    "🔥 POR QUE ENTRAR?",
-
-                    value:motivo
-
-                }
-
-            ],
-
-
-
-            footer:{
-
-                text:"VALK RECRUTAMENTO"
-
-            }
-
-        }]
-    }
-
-
-
-
-    await fetch(webhook,{
-
-        method:"POST",
-
-        headers:{
-            "Content-Type":"application/json"
-        },
-
-        body:JSON.stringify(mensagem)
-
-    })
-
-
-
-
-    alert(
-    "Recrutamento enviado!"
-    )
-
-
-
-
-    fecharForm()
-
-}
-
-</script>
-
-
-
+  <header>
+    <h1>CLAN RB</h1>
+    <p>Força • União • Respeito</p>
+
+    <nav>
+      <button onclick="showSection('home')">Início</button>
+      <button onclick="showSection('recrutamento')">Recrutamento</button>
+      <button onclick="showSection('membros')">Membros</button>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- HOME -->
+    <section id="home" class="active">
+      <h2>Bem-vindo ao Clan RB</h2>
+      <p>Um clan focado em evolução e domínio dentro do jogo.</p>
+    </section>
+
+    <!-- RECRUTAMENTO -->
+    <section id="recrutamento">
+      <h2>Recrutamento</h2>
+      <p>Preencha o formulário para entrar no clan.</p>
+
+      <form>
+        <input type="text" placeholder="Seu nick" required />
+        <input type="text" placeholder="Idade" required />
+        <textarea placeholder="Por que quer entrar?" required></textarea>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+
+    <!-- MEMBROS -->
+    <section id="membros">
+      <h2>Membros do Clan</h2>
+      <div class="grid" id="membersGrid"></div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Clan RB © 2026</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
-
-<script src="script.js"></script>
