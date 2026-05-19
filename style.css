@@ -1,73 +1,77 @@
 body {
   margin: 0;
-  font-family: Arial;
-  background: #07070a;
+  background: radial-gradient(circle, #0a0a0f, #000);
   overflow: hidden;
-  color: red; /* 🔴 TEXTO GLOBAL VERMELHO */
+  font-family: Arial;
+  color: red;
 }
 
+/* PARTICLES */
 #particles-js {
   position: absolute;
   width: 100%;
   height: 100%;
   z-index: 0;
+  filter: blur(0.5px);
 }
 
-.container {
-  position: relative;
-  z-index: 2;
+/* CENA 3D */
+.scene {
   height: 100vh;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
+  perspective: 1200px;
 }
 
-h1 {
-  font-size: 90px;
+/* MENU 3D */
+.menu {
+  text-align: center;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+/* TITLE */
+.menu h1 {
+  font-size: 100px;
   margin: 0;
-  letter-spacing: 10px;
-  color: red;
-  text-shadow: 0 0 20px red;
+  letter-spacing: 12px;
+  text-shadow: 0 0 25px red;
+  transform: translateZ(60px);
 }
 
-/* BOTÕES */
-button {
-  padding: 14px 26px;
-  font-size: 16px;
-
-  background: rgba(255,0,0,0.08);
-  border: 1px solid red;
-  border-radius: 14px;
-
-  color: red;
-  cursor: pointer;
-
-  transition: 0.25s;
-  box-shadow: 0 0 10px rgba(255,0,0,0.3);
-}
-
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 25px red;
-}
-
-/* CENTRAL */
+/* BOTÕES 3D */
 .buttons {
   margin-top: 40px;
   display: flex;
   gap: 25px;
+  justify-content: center;
 }
 
-/* TOPO DIREITO */
-.top-right {
-  position: absolute;
-  top: 18px;
-  right: 18px;
+button {
+  padding: 18px 40px;
+  font-size: 18px;
+
+  background: rgba(255,0,0,0.08);
+  border: 1px solid red;
+  color: red;
+
+  border-radius: 14px;
+  cursor: pointer;
+
+  transform-style: preserve-3d;
+  transition: 0.25s;
+  box-shadow: 0 0 15px rgba(255,0,0,0.3);
+}
+
+/* efeito profundidade */
+button:hover {
+  transform: translateZ(40px) scale(1.1);
+  box-shadow: 0 0 40px red;
 }
 
 /* DISCORD */
-.discord-float {
+.discord {
   position: fixed;
   bottom: 18px;
   right: 18px;
@@ -80,18 +84,18 @@ button:hover {
   align-items: center;
 
   border-radius: 16px;
-  background: rgba(88,101,242,0.18);
+  background: rgba(88,101,242,0.2);
   border: 1px solid rgba(88,101,242,0.7);
 
   cursor: pointer;
-  transition: 0.25s;
+  transition: 0.3s;
 }
 
-.discord-float:hover {
-  transform: scale(1.12);
+.discord:hover {
+  transform: scale(1.15);
 }
 
-.discord-float img {
+.discord img {
   width: 30px;
 }
 
@@ -101,14 +105,13 @@ button:hover {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.8);
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(10px);
   justify-content: center;
   align-items: center;
-  z-index: 10;
 }
 
 .modal-content {
-  background: rgba(20,20,25,0.95);
+  background: rgba(15,15,20,0.95);
   border: 1px solid red;
   padding: 20px;
   border-radius: 16px;
@@ -121,48 +124,4 @@ button:hover {
   right: 15px;
   top: 10px;
   cursor: pointer;
-  color: red;
-}
-
-/* MEMBROS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
-  margin-top: 15px;
-}
-
-.card {
-  background: rgba(255,0,0,0.05);
-  border: 1px solid red;
-  border-radius: 14px;
-  padding: 10px;
-  text-align: center;
-}
-
-.card img {
-  width: 80px;
-  height: 80px;
-}
-
-.tag {
-  margin-top: 5px;
-  padding: 5px;
-  background: red;
-  color: black;
-  border-radius: 8px;
-  font-size: 12px;
-}
-
-/* INPUTS */
-input, textarea {
-  width: 100%;
-  margin: 6px 0;
-  padding: 10px;
-  border-radius: 10px;
-
-  background: rgba(0,0,0,0.4);
-  border: 1px solid red;
-
-  color: red;
 }
