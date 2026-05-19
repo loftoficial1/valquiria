@@ -1,57 +1,191 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Clan RB</title>
-  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #0d0d0d;
+      color: white;
+    }
+
+    header {
+      padding: 15px;
+      background: #111;
+      border-bottom: 2px solid red;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    h1 { color: red; margin: 0; }
+
+    button {
+      background: red;
+      border: none;
+      padding: 10px 15px;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover { background: darkred; }
+
+    /* MODAL */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.8);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background: #151515;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid red;
+      width: 80%;
+      max-width: 800px;
+    }
+
+    .close {
+      float: right;
+      cursor: pointer;
+      color: red;
+      font-size: 20px;
+    }
+
+    /* MEMBROS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    .card {
+      background: #1a1a1a;
+      border: 1px solid red;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+    }
+
+    .card img {
+      width: 80px;
+      height: 80px;
+      image-rendering: pixelated;
+    }
+
+    .tag {
+      margin-top: 5px;
+      padding: 5px;
+      border-radius: 8px;
+      background: red;
+      font-size: 12px;
+    }
+
+    input, textarea {
+      width: 100%;
+      margin: 5px 0;
+      padding: 8px;
+      border-radius: 8px;
+      border: none;
+    }
+  </style>
 </head>
+
 <body>
 
-  <header>
-    <h1>CLAN RB</h1>
-    <p>Força • União • Respeito</p>
+<header>
+  <h1>CLAN RB</h1>
 
-    <nav>
-      <button onclick="showSection('home')">Início</button>
-      <button onclick="showSection('recrutamento')">Recrutamento</button>
-      <button onclick="showSection('membros')">Membros</button>
-    </nav>
-  </header>
+  <div>
+    <button onclick="openRecruit()">Recrutamento</button>
+    <button onclick="openMembers()">Membros</button>
+  </div>
+</header>
 
-  <main>
+<!-- RECRUTAMENTO -->
+<div class="modal" id="recruitModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeRecruit()">✖</span>
+    <h2>Recrutamento</h2>
 
-    <!-- HOME -->
-    <section id="home" class="active">
-      <h2>Bem-vindo ao Clan RB</h2>
-      <p>Um clan focado em evolução e domínio dentro do jogo.</p>
-    </section>
+    <input id="nick" placeholder="Seu nick Minecraft">
+    <input id="age" placeholder="Idade">
+    <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
 
-    <!-- RECRUTAMENTO -->
-    <section id="recrutamento">
-      <h2>Recrutamento</h2>
-      <p>Preencha o formulário para entrar no clan.</p>
+    <button onclick="sendRecruit()">Enviar</button>
+  </div>
+</div>
 
-      <form>
-        <input type="text" placeholder="Seu nick" required />
-        <input type="text" placeholder="Idade" required />
-        <textarea placeholder="Por que quer entrar?" required></textarea>
-        <button type="submit">Enviar</button>
-      </form>
-    </section>
+<!-- MEMBROS -->
+<div class="modal" id="membersModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMembers()">✖</span>
+    <h2>Membros do Clan</h2>
 
-    <!-- MEMBROS -->
-    <section id="membros">
-      <h2>Membros do Clan</h2>
-      <div class="grid" id="membersGrid"></div>
-    </section>
+    <div class="grid" id="membersGrid"></div>
+  </div>
+</div>
 
-  </main>
+<script>
+const members = [
+  { name: "Notch", role: "Líder" },
+  { name: "Herobrine", role: "Lenda" },
+  { name: "Steve", role: "Membro" }
+];
 
-  <footer>
-    <p>Clan RB © 2026</p>
-  </footer>
+// MODAIS
+function openRecruit() {
+  document.getElementById("recruitModal").style.display = "flex";
+}
 
-  <script src="script.js"></script>
+function closeRecruit() {
+  document.getElementById("recruitModal").style.display = "none";
+}
+
+function openMembers() {
+  document.getElementById("membersModal").style.display = "flex";
+  loadMembers();
+}
+
+function closeMembers() {
+  document.getElementById("membersModal").style.display = "none";
+}
+
+// RECRUTAMENTO (fake)
+function sendRecruit() {
+  alert("Enviado!");
+  closeRecruit();
+}
+
+// MEMBROS
+function loadMembers() {
+  const grid = document.getElementById("membersGrid");
+  grid.innerHTML = "";
+
+  members.forEach(m => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="https://mc-heads.net/avatar/${m.name}/100" />
+      <h3>${m.name}</h3>
+      <div class="tag">${m.role}</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+</script>
+
 </body>
 </html>
