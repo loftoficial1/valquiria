@@ -1,27 +1,21 @@
-/* =========================
-   BODY
-========================= */
-
 body {
 
   margin: 0;
 
   background:
     radial-gradient(circle at top,
-      #160000 0%,
-      #090909 45%,
-      #000000 100%);
+      #160000,
+      #090909,
+      #000000);
 
   overflow: hidden;
 
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
 
   color: red;
 }
 
-/* =========================
-   PARTICLES
-========================= */
+/* PARTICLES */
 
 #particles-js {
 
@@ -31,13 +25,9 @@ body {
   height: 100%;
 
   z-index: 0;
-
-  opacity: 0.9;
 }
 
-/* =========================
-   SCENE
-========================= */
+/* SCENE */
 
 .scene {
 
@@ -47,17 +37,11 @@ body {
 
   justify-content: center;
   align-items: center;
-
-  perspective: 1200px;
 }
 
-/* =========================
-   MENU
-========================= */
+/* MENU */
 
 .menu {
-
-  position: relative;
 
   text-align: center;
 
@@ -66,9 +50,7 @@ body {
   transition: 0.25s ease;
 }
 
-/* =========================
-   TITLE
-========================= */
+/* TITLE */
 
 .menu h1 {
 
@@ -76,67 +58,50 @@ body {
 
   font-size: 140px;
 
-  letter-spacing: 18px;
-
-  font-weight: 900;
-
-  color: #ff1a1a;
+  letter-spacing: 16px;
 
   text-shadow:
-    0 0 10px rgba(255,0,0,0.8),
-    0 0 30px rgba(255,0,0,0.7),
-    0 0 60px rgba(255,0,0,0.5);
+    0 0 15px red,
+    0 0 40px rgba(255,0,0,0.5);
 }
 
-/* =========================
-   SUBTITLE
-========================= */
+/* SUBTITLE */
 
 .subtitle {
 
-  margin-top: 12px;
-
-  font-size: 20px;
+  margin-top: 10px;
 
   color: rgba(255,255,255,0.7);
+
+  font-size: 20px;
 
   letter-spacing: 3px;
 }
 
-/* =========================
-   BUTTON AREA
-========================= */
+/* BUTTONS */
 
 .buttons {
 
-  margin-top: 55px;
+  margin-top: 50px;
 
   display: flex;
 
-  gap: 35px;
+  gap: 30px;
 
   justify-content: center;
-  align-items: center;
 }
 
-/* =========================
-   BUTTON
-========================= */
+/* BUTTON */
 
 button {
-
-  position: relative;
 
   padding: 22px 55px;
 
   font-size: 20px;
 
-  color: #ff2b2b;
-
   border-radius: 18px;
 
-  border:
-    1px solid rgba(255,0,0,0.45);
+  border: 1px solid rgba(255,0,0,0.45);
 
   background:
     linear-gradient(
@@ -145,52 +110,17 @@ button {
       rgba(255,0,0,0.03)
     );
 
-  backdrop-filter: blur(8px);
+  color: red;
 
   cursor: pointer;
 
   transition: 0.25s;
 
-  overflow: hidden;
-
   box-shadow:
-    0 0 20px rgba(255,0,0,0.15),
-    inset 0 0 20px rgba(255,0,0,0.03);
+    0 0 20px rgba(255,0,0,0.15);
 }
 
-/* =========================
-   BUTTON GLOW
-========================= */
-
-button::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 0;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,0.12),
-      transparent
-    );
-
-  transform: translateX(-100%);
-
-  transition: 0.45s;
-}
-
-button:hover::before {
-
-  transform: translateX(100%);
-}
-
-/* =========================
-   BUTTON HOVER
-========================= */
+/* HOVER */
 
 button:hover {
 
@@ -198,18 +128,13 @@ button:hover {
     translateY(-4px)
     scale(1.06);
 
-  border-color: red;
-
   color: white;
 
   box-shadow:
-    0 0 25px rgba(255,0,0,0.45),
-    0 0 60px rgba(255,0,0,0.25);
+    0 0 25px rgba(255,0,0,0.4);
 }
 
-/* =========================
-   MEMBERS BUTTON
-========================= */
+/* MEMBERS */
 
 .members-btn {
 
@@ -221,9 +146,7 @@ button:hover {
   z-index: 10;
 }
 
-/* =========================
-   DISCORD BUTTON
-========================= */
+/* DISCORD */
 
 .discord {
 
@@ -243,23 +166,16 @@ button:hover {
   border-radius: 20px;
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(88,101,242,0.35),
-      rgba(88,101,242,0.1)
-    );
+    rgba(88,101,242,0.2);
 
   border:
-    1px solid rgba(88,101,242,0.65);
+    1px solid rgba(88,101,242,0.7);
 
   cursor: pointer;
 
   transition: 0.25s;
 
   z-index: 10;
-
-  box-shadow:
-    0 0 20px rgba(88,101,242,0.35);
 }
 
 .discord:hover {
@@ -267,9 +183,6 @@ button:hover {
   transform:
     scale(1.12)
     rotate(4deg);
-
-  box-shadow:
-    0 0 35px rgba(88,101,242,0.55);
 }
 
 .discord img {
@@ -277,9 +190,7 @@ button:hover {
   width: 38px;
 }
 
-/* =========================
-   MODAL
-========================= */
+/* MODAL */
 
 .modal {
 
@@ -292,16 +203,14 @@ button:hover {
   justify-content: center;
   align-items: center;
 
-  background: rgba(0,0,0,0.82);
+  background: rgba(0,0,0,0.8);
 
   backdrop-filter: blur(12px);
 
   z-index: 20;
 }
 
-/* =========================
-   MODAL CONTENT
-========================= */
+/* MODAL CONTENT */
 
 .modal-content {
 
@@ -323,15 +232,9 @@ button:hover {
       rgba(15,15,18,0.98),
       rgba(20,0,0,0.96)
     );
-
-  box-shadow:
-    0 0 40px rgba(255,0,0,0.18),
-    inset 0 0 25px rgba(255,0,0,0.04);
 }
 
-/* =========================
-   MODAL TITLE
-========================= */
+/* TITLE */
 
 .modal-content h2 {
 
@@ -347,9 +250,7 @@ button:hover {
     0 0 15px rgba(255,0,0,0.8);
 }
 
-/* =========================
-   CLOSE
-========================= */
+/* CLOSE */
 
 .close {
 
@@ -370,14 +271,9 @@ button:hover {
   transform:
     rotate(90deg)
     scale(1.15);
-
-  text-shadow:
-    0 0 12px red;
 }
 
-/* =========================
-   INPUTS
-========================= */
+/* INPUT */
 
 input,
 textarea {
@@ -405,49 +301,16 @@ textarea {
   outline: none;
 
   resize: none;
-
-  transition: 0.25s;
 }
 
-/* =========================
-   INPUT FOCUS
-========================= */
-
-input:focus,
-textarea:focus {
-
-  border-color: red;
-
-  box-shadow:
-    0 0 18px rgba(255,0,0,0.28);
-
-  background:
-    rgba(255,0,0,0.05);
-}
-
-/* =========================
-   PLACEHOLDER
-========================= */
-
-input::placeholder,
-textarea::placeholder {
-
-  color:
-    rgba(255,0,0,0.45);
-}
-
-/* =========================
-   TEXTAREA
-========================= */
+/* TEXTAREA */
 
 textarea {
 
   min-height: 160px;
 }
 
-/* =========================
-   ABOUT GRID
-========================= */
+/* ABOUT */
 
 .about-grid {
 
@@ -458,9 +321,7 @@ textarea {
   gap: 18px;
 }
 
-/* =========================
-   ABOUT LABEL
-========================= */
+/* LABEL */
 
 .about-box label {
 
@@ -472,9 +333,7 @@ textarea {
     rgba(255,0,0,0.82);
 }
 
-/* =========================
-   MEMBERS GRID
-========================= */
+/* MEMBERS GRID */
 
 .members-grid {
 
@@ -488,18 +347,12 @@ textarea {
   gap: 18px;
 }
 
-/* =========================
-   MEMBER CARD
-========================= */
+/* CARD */
 
 .member-card {
 
   background:
-    linear-gradient(
-      145deg,
-      rgba(255,0,0,0.08),
-      rgba(255,0,0,0.03)
-    );
+    rgba(255,0,0,0.05);
 
   border:
     1px solid rgba(255,0,0,0.22);
@@ -523,9 +376,7 @@ textarea {
     0 0 25px rgba(255,0,0,0.3);
 }
 
-/* =========================
-   MEMBER IMAGE
-========================= */
+/* IMAGE */
 
 .member-card img {
 
@@ -535,27 +386,18 @@ textarea {
   border-radius: 14px;
 
   image-rendering: pixelated;
-
-  border:
-    1px solid rgba(255,0,0,0.28);
 }
 
-/* =========================
-   MEMBER NAME
-========================= */
+/* NAME */
 
 .member-card h3 {
 
   margin-top: 15px;
 
   font-size: 24px;
-
-  color: red;
 }
 
-/* =========================
-   ROLE
-========================= */
+/* ROLE */
 
 .role {
 
@@ -577,23 +419,4 @@ textarea {
   font-size: 15px;
 
   font-weight: bold;
-
-  box-shadow:
-    0 0 18px rgba(255,0,0,0.25);
-}
-
-/* =========================
-   SCROLLBAR
-========================= */
-
-::-webkit-scrollbar {
-
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-
-  background: red;
-
-  border-radius: 20px;
 }
