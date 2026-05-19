@@ -13,32 +13,30 @@
 
 <div id="particles-js"></div>
 
+<!-- MEMBROS -->
+<div class="top-right">
+  <button onclick="openMembers()">Membros</button>
+</div>
+
 <!-- DISCORD -->
 <div class="discord" onclick="openDiscord()">
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
 </div>
 
-<!-- MEMBROS -->
-<div class="members-btn">
-  <button onclick="openMembers()">Membros</button>
-</div>
-
 <!-- HUB -->
-<div class="scene">
-  <div class="menu">
-    <h1>VALK</h1>
+<div class="container">
+  <h1>VALK</h1>
 
-    <div class="buttons">
-      <button onclick="openRecruit()">Recrutamento</button>
-      <button onclick="openAbout()">Sobre</button>
-    </div>
+  <div class="buttons">
+    <button onclick="openRecruit()">Recrutamento</button>
+    <button onclick="openAbout()">Sobre</button>
   </div>
 </div>
 
-<!-- MODAIS -->
+<!-- RECRUTAMENTO -->
 <div class="modal" id="recruitModal">
   <div class="box">
-    <span onclick="closeRecruit()" class="close">✖</span>
+    <span class="close" onclick="closeRecruit()">✖</span>
     <h2>Recrutamento</h2>
 
     <input id="nick" placeholder="Nick">
@@ -49,36 +47,36 @@
   </div>
 </div>
 
+<!-- SOBRE -->
 <div class="modal" id="aboutModal">
   <div class="box">
-    <span onclick="closeAbout()" class="close">✖</span>
+    <span class="close" onclick="closeAbout()">✖</span>
     <h2>Sobre</h2>
     <p>VALK é um clan focado em PvP e domínio.</p>
   </div>
 </div>
 
+<!-- MEMBROS -->
 <div class="modal" id="membersModal">
   <div class="box">
-    <span onclick="closeMembers()" class="close">✖</span>
+    <span class="close" onclick="closeMembers()">✖</span>
     <h2>Membros</h2>
     <div class="grid" id="membersGrid"></div>
   </div>
 </div>
 
+<!-- DISCORD -->
 <div class="modal" id="discordModal">
   <div class="box">
-    <span onclick="closeDiscord()" class="close">✖</span>
+    <span class="close" onclick="closeDiscord()">✖</span>
     <h2>Discord</h2>
 
     <iframe
       src="https://discord.com/widget?id=YOUR_ID&theme=dark"
-      width="100%" height="350"></iframe>
+      width="100%" height="350">
+    </iframe>
   </div>
 </div>
-
-<!-- SONS -->
-<audio id="hoverSound" src="https://www.myinstants.com/media/sounds/menu-click.wav"></audio>
-<audio id="clickSound" src="https://www.myinstants.com/media/sounds/mouse-click.wav"></audio>
 
 <script src="script.js"></script>
 </body>
