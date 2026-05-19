@@ -1,4 +1,3 @@
-/* BASE */
 body {
   margin: 0;
   font-family: Arial;
@@ -13,7 +12,6 @@ body {
   width: 100%;
   height: 100%;
   z-index: 0;
-  transition: 0.4s;
 }
 
 /* HUB */
@@ -25,67 +23,45 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: 0.4s;
 }
 
-/* TITLE */
 h1 {
   font-size: 90px;
   margin: 0;
   letter-spacing: 10px;
   color: #ff1a1a;
   text-shadow: 0 0 20px red;
-  transition: 0.4s;
 }
 
-/* BOTÕES */
-.buttons {
-  margin-top: 40px;
-  display: flex;
-  gap: 25px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.buttons button {
-  padding: 18px 38px;
-  font-size: 18px;
+/* BOTÕES PADRÃO (RECRUTAMENTO / SOBRE / MEMBROS / DISCORD) */
+button {
+  padding: 14px 26px;
+  font-size: 16px;
 
   background: rgba(255,0,0,0.08);
   border: 1px solid rgba(255,0,0,0.6);
-  border-radius: 16px;
+  border-radius: 14px;
 
   color: white;
   cursor: pointer;
 
   transition: 0.25s;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
 }
 
-/* ZOOM DE CÂMERA */
-.buttons button:hover {
-  transform: scale(1.18) translateY(-6px);
-  box-shadow: 0 0 35px red;
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px red;
 }
 
-/* EFEITO FOCO GLOBAL */
-body:has(.buttons button:hover) .container h1 {
-  transform: scale(0.92);
-  opacity: 0.5;
-  filter: blur(1px);
+/* BOTÕES CENTRAIS */
+.buttons {
+  margin-top: 40px;
+  display: flex;
+  gap: 25px;
 }
 
-body:has(.buttons button:hover) .buttons button:not(:hover) {
-  transform: scale(0.92);
-  opacity: 0.4;
-  filter: blur(0.5px);
-}
-
-body:has(.buttons button:hover) #particles-js {
-  filter: blur(1.5px) brightness(0.6);
-  transform: scale(1.05);
-}
-
-/* TOP RIGHT */
+/* MEMBROS TOPO DIREITO */
 .top-right {
   position: absolute;
   top: 18px;
@@ -93,19 +69,11 @@ body:has(.buttons button:hover) #particles-js {
   z-index: 3;
 }
 
-.top-right button {
-  padding: 12px 18px;
-  border-radius: 14px;
-  background: rgba(255,0,0,0.08);
-  border: 1px solid rgba(255,0,0,0.6);
-  cursor: pointer;
-}
-
-/* DISCORD */
+/* DISCORD CANTO INFERIOR DIREITO */
 .discord-float {
   position: fixed;
   bottom: 18px;
-  left: 18px;
+  right: 18px;
 
   width: 60px;
   height: 60px;
@@ -115,11 +83,14 @@ body:has(.buttons button:hover) #particles-js {
   align-items: center;
 
   border-radius: 16px;
+
   background: rgba(88,101,242,0.18);
   border: 1px solid rgba(88,101,242,0.7);
 
   cursor: pointer;
   transition: 0.25s;
+
+  box-shadow: 0 0 18px rgba(88,101,242,0.5);
 }
 
 .discord-float:hover {
@@ -130,7 +101,7 @@ body:has(.buttons button:hover) #particles-js {
   width: 30px;
 }
 
-/* MODAL */
+/* MODAIS */
 .modal {
   display: none;
   position: fixed;
@@ -144,6 +115,7 @@ body:has(.buttons button:hover) #particles-js {
 
 .modal-content {
   background: rgba(20,20,25,0.9);
+  border: 1px solid rgba(255,0,0,0.4);
   padding: 20px;
   border-radius: 16px;
   width: 90%;
@@ -159,7 +131,7 @@ body:has(.buttons button:hover) #particles-js {
   color: red;
 }
 
-/* MEMBROS */
+/* MEMBROS GRID */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -188,13 +160,15 @@ body:has(.buttons button:hover) #particles-js {
   font-size: 12px;
 }
 
-/* INPUTS */
+/* INPUTS MELHORADOS */
 input, textarea {
   width: 100%;
   margin: 6px 0;
   padding: 10px;
   border-radius: 10px;
+
   background: rgba(0,0,0,0.4);
   border: 1px solid rgba(255,0,0,0.3);
+
   color: white;
 }
