@@ -135,9 +135,28 @@ function openDiscord() {
 
 }
 
-/* ===== MEMBROS JSON ===== */
+/* MEMBROS */
 
-async function openMembers() {
+const members = [
+
+  {
+    name: "Notch",
+    role: "Líder"
+  },
+
+  {
+    name: "Steve",
+    role: "Membro"
+  },
+
+  {
+    name: "Herobrine",
+    role: "Elite"
+  }
+
+];
+
+function openMembers() {
 
   document.getElementById(
     "membersModal"
@@ -148,56 +167,31 @@ async function openMembers() {
       "membersGrid"
     );
 
-  grid.innerHTML =
-    "<p>Carregando...</p>";
+  grid.innerHTML = "";
 
-  try {
+  members.forEach(member => {
 
-    const response =
-      await fetch("members.json");
+    const card =
+      document.createElement("div");
 
-    const members =
-      await response.json();
+    card.className =
+      "member-card";
 
-    grid.innerHTML = "";
+    card.innerHTML = `
 
-    members.forEach(member => {
+      <img src="https://mc-heads.net/avatar/${member.name}/100">
 
-      const card =
-        document.createElement("div");
+      <h3>${member.name}</h3>
 
-      card.className =
-        "member-card";
+      <div class="role">
+        ${member.role}
+      </div>
 
-      card.innerHTML = `
-
-        <img src="https://mc-heads.net/avatar/${member.name}/100">
-
-        <h3>${member.name}</h3>
-
-        <div class="role">
-          ${member.role}
-        </div>
-
-      `;
-
-      grid.appendChild(card);
-
-    });
-
-  }
-
-  catch(err) {
-
-    console.error(err);
-
-    grid.innerHTML = `
-      <p>
-        Erro ao carregar membros.
-      </p>
     `;
 
-  }
+    grid.appendChild(card);
+
+  });
 
 }
 
@@ -208,6 +202,7 @@ function closeMembers() {
   ).style.display = "none";
 
 }
+
 /* WEBHOOK */
 
 const WEBHOOK_URL =
