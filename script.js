@@ -139,37 +139,38 @@ function openDiscord() {
 
 async function openMembers() {
 
-  document.getElementById(
-    "membersModal"
-  ).style.display = "flex";
-
   const grid =
     document.getElementById(
       "membersGrid"
     );
 
+  document.getElementById(
+    "membersModal"
+  ).style.display = "flex";
+
   grid.innerHTML =
-    "<p>Carregando...</p>";
+    "Carregando...";
 
-  try {
+  const { data, error } =
+    await client
+    .from("members")
+    .select("*");
 
-    const response =
-      await fetch("members.json");
+  if(error) {
 
-    const members =
-      await response.json();
+    grid.innerHTML =
+      "Erro.";
 
-    grid.innerHTML = "";
+    return;
+  }
 
-    members.forEach(member => {
+  grid.innerHTML = "";
 
-      const card =
-        document.createElement("div");
+  data.forEach(member => {
 
-      card.className =
-        "member-card";
+    grid.innerHTML += `
 
-      card.innerHTML = `
+      <div class="member-card">
 
         <img src="https://mc-heads.net/avatar/${member.name}/100">
 
@@ -179,33 +180,11 @@ async function openMembers() {
           ${member.role}
         </div>
 
-      `;
+      </div>
 
-      grid.appendChild(card);
-
-    });
-
-  }
-
-  catch(err) {
-
-    console.error(err);
-
-    grid.innerHTML = `
-      <p>
-        Erro ao carregar membros.
-      </p>
     `;
 
-  }
-
-}
-
-function closeMembers() {
-
-  document.getElementById(
-    "membersModal"
-  ).style.display = "none";
+  });
 
 }
 
