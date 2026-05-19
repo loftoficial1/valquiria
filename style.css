@@ -5,72 +5,125 @@ body {
   color: white;
 }
 
+/* HEADER */
 header {
-  text-align: center;
-  padding: 20px;
+  padding: 15px 20px;
   background: #111;
   border-bottom: 2px solid red;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 header h1 {
+  margin: 0;
   color: red;
+  letter-spacing: 2px;
 }
 
-nav button {
-  margin: 5px;
-  padding: 10px 15px;
-  border: none;
-  background: red;
-  color: white;
-  cursor: pointer;
-  border-radius: 8px;
-}
-
-nav button:hover {
-  background: darkred;
-}
-
-section {
-  display: none;
-  padding: 20px;
-}
-
-section.active {
-  display: block;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 300px;
-  gap: 10px;
-}
-
-input, textarea {
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-}
-
+/* BOTÕES */
 button {
-  padding: 10px;
-  border: none;
   background: red;
+  border: none;
+  padding: 10px 15px;
   color: white;
   border-radius: 8px;
   cursor: pointer;
+  margin-left: 5px;
+  transition: 0.2s;
 }
 
+button:hover {
+  background: darkred;
+  transform: scale(1.05);
+}
+
+/* MODAL BASE */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #151515;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid red;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+}
+
+/* BOTÃO FECHAR */
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  color: red;
+  font-size: 20px;
+}
+
+/* GRID DE MEMBROS */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  gap: 12px;
+  margin-top: 15px;
 }
 
+/* CARD MEMBRO */
 .card {
   background: #1a1a1a;
-  padding: 10px;
-  border-radius: 10px;
   border: 1px solid red;
+  border-radius: 12px;
+  padding: 12px;
   text-align: center;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 10px red;
+}
+
+/* SKIN MINECRAFT */
+.card img {
+  width: 80px;
+  height: 80px;
+  image-rendering: pixelated;
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+
+/* TAG FUNÇÃO */
+.tag {
+  margin-top: 6px;
+  padding: 5px;
+  border-radius: 8px;
+  background: red;
+  font-size: 12px;
+}
+
+/* INPUTS */
+input, textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: #0f0f0f;
+  color: white;
+}
+
+/* TEXTO */
+h2 {
+  margin-top: 0;
+  color: red;
 }
