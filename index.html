@@ -76,7 +76,6 @@
 
         <h1>MEMBROS VALK</h1>
 
-        <!-- AGORA DINÂMICO -->
         <div id="membersGrid" class="membersGrid"></div>
 
         <button class="closeBtn" onclick="fecharMembros()">
@@ -88,39 +87,6 @@
 </div>
 
 <script src="script.js"></script>
-
-<script>
-async function loadMembers() {
-    const res = await fetch("/members");
-    const data = await res.json();
-
-    const grid = document.getElementById("membersGrid");
-    grid.innerHTML = "";
-
-    data.forEach(m => {
-        grid.innerHTML += `
-            <div class="memberCard">
-                <img src="https://mc-heads.net/avatar/${m.nick}/100">
-                <h2>${m.nick}</h2>
-                <div class="cargo">${m.cargo}</div>
-            </div>
-        `;
-    });
-}
-
-// carregar ao abrir página
-window.addEventListener("load", loadMembers);
-
-// abrir modal já atualiza lista
-function abrirMembros(){
-    document.getElementById("membersModal").style.display = "flex";
-    loadMembers();
-}
-
-function fecharMembros(){
-    document.getElementById("membersModal").style.display = "none";
-}
-</script>
 
 </body>
 </html>
