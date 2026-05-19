@@ -1,4 +1,4 @@
-const MEMBERS_URL = "https://raw.githubusercontent.com/loftoficial1/valquiria/main/members.json";
+const MEMBERS_URL = "https://github.com/loftoficial1/valquiria/blob/d48fb8b4e9ddc896220a2c35925b6940c8c083f0/members.json";
 
 async function loadMembers() {
     try {
