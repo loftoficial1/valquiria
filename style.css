@@ -1,0 +1,599 @@
+/* =========================
+   BODY
+========================= */
+
+body {
+
+  margin: 0;
+
+  background:
+    radial-gradient(circle at top,
+      #160000 0%,
+      #090909 45%,
+      #000000 100%);
+
+  overflow: hidden;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: red;
+}
+
+/* =========================
+   PARTICLES
+========================= */
+
+#particles-js {
+
+  position: fixed;
+
+  width: 100%;
+  height: 100%;
+
+  z-index: 0;
+
+  opacity: 0.9;
+}
+
+/* =========================
+   SCENE
+========================= */
+
+.scene {
+
+  height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  perspective: 1200px;
+}
+
+/* =========================
+   MENU
+========================= */
+
+.menu {
+
+  position: relative;
+
+  text-align: center;
+
+  z-index: 2;
+
+  transition: 0.25s ease;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+.menu h1 {
+
+  margin: 0;
+
+  font-size: 140px;
+
+  letter-spacing: 18px;
+
+  font-weight: 900;
+
+  color: #ff1a1a;
+
+  text-shadow:
+    0 0 10px rgba(255,0,0,0.8),
+    0 0 30px rgba(255,0,0,0.7),
+    0 0 60px rgba(255,0,0,0.5);
+}
+
+/* =========================
+   SUBTITLE
+========================= */
+
+.subtitle {
+
+  margin-top: 12px;
+
+  font-size: 20px;
+
+  color: rgba(255,255,255,0.7);
+
+  letter-spacing: 3px;
+}
+
+/* =========================
+   BUTTON AREA
+========================= */
+
+.buttons {
+
+  margin-top: 55px;
+
+  display: flex;
+
+  gap: 35px;
+
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button {
+
+  position: relative;
+
+  padding: 22px 55px;
+
+  font-size: 20px;
+
+  color: #ff2b2b;
+
+  border-radius: 18px;
+
+  border:
+    1px solid rgba(255,0,0,0.45);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,0,0,0.12),
+      rgba(255,0,0,0.03)
+    );
+
+  backdrop-filter: blur(8px);
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 0 20px rgba(255,0,0,0.15),
+    inset 0 0 20px rgba(255,0,0,0.03);
+}
+
+/* =========================
+   BUTTON GLOW
+========================= */
+
+button::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,0.12),
+      transparent
+    );
+
+  transform: translateX(-100%);
+
+  transition: 0.45s;
+}
+
+button:hover::before {
+
+  transform: translateX(100%);
+}
+
+/* =========================
+   BUTTON HOVER
+========================= */
+
+button:hover {
+
+  transform:
+    translateY(-4px)
+    scale(1.06);
+
+  border-color: red;
+
+  color: white;
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,0.45),
+    0 0 60px rgba(255,0,0,0.25);
+}
+
+/* =========================
+   MEMBERS BUTTON
+========================= */
+
+.members-btn {
+
+  position: fixed;
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 10;
+}
+
+/* =========================
+   DISCORD BUTTON
+========================= */
+
+.discord {
+
+  position: fixed;
+
+  bottom: 20px;
+  right: 20px;
+
+  width: 72px;
+  height: 72px;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(88,101,242,0.35),
+      rgba(88,101,242,0.1)
+    );
+
+  border:
+    1px solid rgba(88,101,242,0.65);
+
+  cursor: pointer;
+
+  transition: 0.25s;
+
+  z-index: 10;
+
+  box-shadow:
+    0 0 20px rgba(88,101,242,0.35);
+}
+
+.discord:hover {
+
+  transform:
+    scale(1.12)
+    rotate(4deg);
+
+  box-shadow:
+    0 0 35px rgba(88,101,242,0.55);
+}
+
+.discord img {
+
+  width: 38px;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.modal {
+
+  display: none;
+
+  position: fixed;
+
+  inset: 0;
+
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0,0,0,0.82);
+
+  backdrop-filter: blur(12px);
+
+  z-index: 20;
+}
+
+/* =========================
+   MODAL CONTENT
+========================= */
+
+.modal-content {
+
+  position: relative;
+
+  width: 90%;
+  max-width: 850px;
+
+  padding: 30px;
+
+  border-radius: 26px;
+
+  border:
+    1px solid rgba(255,0,0,0.35);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(15,15,18,0.98),
+      rgba(20,0,0,0.96)
+    );
+
+  box-shadow:
+    0 0 40px rgba(255,0,0,0.18),
+    inset 0 0 25px rgba(255,0,0,0.04);
+}
+
+/* =========================
+   MODAL TITLE
+========================= */
+
+.modal-content h2 {
+
+  margin-top: 0;
+
+  text-align: center;
+
+  font-size: 40px;
+
+  letter-spacing: 4px;
+
+  text-shadow:
+    0 0 15px rgba(255,0,0,0.8);
+}
+
+/* =========================
+   CLOSE
+========================= */
+
+.close {
+
+  position: absolute;
+
+  top: 14px;
+  right: 18px;
+
+  font-size: 28px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+.close:hover {
+
+  transform:
+    rotate(90deg)
+    scale(1.15);
+
+  text-shadow:
+    0 0 12px red;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+input,
+textarea {
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-top: 14px;
+
+  padding: 18px;
+
+  border-radius: 16px;
+
+  border:
+    1px solid rgba(255,0,0,0.22);
+
+  background:
+    rgba(255,0,0,0.03);
+
+  color: red;
+
+  font-size: 18px;
+
+  outline: none;
+
+  resize: none;
+
+  transition: 0.25s;
+}
+
+/* =========================
+   INPUT FOCUS
+========================= */
+
+input:focus,
+textarea:focus {
+
+  border-color: red;
+
+  box-shadow:
+    0 0 18px rgba(255,0,0,0.28);
+
+  background:
+    rgba(255,0,0,0.05);
+}
+
+/* =========================
+   PLACEHOLDER
+========================= */
+
+input::placeholder,
+textarea::placeholder {
+
+  color:
+    rgba(255,0,0,0.45);
+}
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea {
+
+  min-height: 160px;
+}
+
+/* =========================
+   ABOUT GRID
+========================= */
+
+.about-grid {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+/* =========================
+   ABOUT LABEL
+========================= */
+
+.about-box label {
+
+  margin-bottom: 8px;
+
+  font-size: 18px;
+
+  color:
+    rgba(255,0,0,0.82);
+}
+
+/* =========================
+   MEMBERS GRID
+========================= */
+
+.members-grid {
+
+  margin-top: 20px;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(180px, 1fr));
+
+  gap: 18px;
+}
+
+/* =========================
+   MEMBER CARD
+========================= */
+
+.member-card {
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,0,0,0.08),
+      rgba(255,0,0,0.03)
+    );
+
+  border:
+    1px solid rgba(255,0,0,0.22);
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  text-align: center;
+
+  transition: 0.25s;
+}
+
+.member-card:hover {
+
+  transform:
+    translateY(-4px)
+    scale(1.04);
+
+  box-shadow:
+    0 0 25px rgba(255,0,0,0.3);
+}
+
+/* =========================
+   MEMBER IMAGE
+========================= */
+
+.member-card img {
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 14px;
+
+  image-rendering: pixelated;
+
+  border:
+    1px solid rgba(255,0,0,0.28);
+}
+
+/* =========================
+   MEMBER NAME
+========================= */
+
+.member-card h3 {
+
+  margin-top: 15px;
+
+  font-size: 24px;
+
+  color: red;
+}
+
+/* =========================
+   ROLE
+========================= */
+
+.role {
+
+  margin-top: 10px;
+
+  padding: 8px;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff0000,
+      #ff3c3c
+    );
+
+  color: black;
+
+  font-size: 15px;
+
+  font-weight: bold;
+
+  box-shadow:
+    0 0 18px rgba(255,0,0,0.25);
+}
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+
+  width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+
+  background: red;
+
+  border-radius: 20px;
+}

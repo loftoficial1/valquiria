@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALK HUB 3D</title>
+
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<!-- MEMBROS -->
+<div class="members-btn">
+  <button onclick="openMembers()">
+    Membros
+  </button>
+</div>
+
+<!-- CAMERA -->
+<div class="scene">
+
+  <div class="menu" id="menu">
+
+    <h1>VALK</h1>
+    <p class="subtitle">
+  Elite PvP Clan
+</p>
+
+    <div class="buttons">
+
+      <button id="recruitBtn">
+        Recrutamento
+      </button>
+
+      <button id="aboutBtn">
+        Sobre
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- DISCORD -->
+<div class="discord" onclick="openDiscord()">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+</div>
+
+<!-- RECRUTAMENTO -->
+<div class="modal" id="recruitModal">
+
+  <div class="modal-content recruit-content">
+
+    <span onclick="closeRecruit()" class="close">✖</span>
+
+    <h2>Recrutamento</h2>
+
+    <input id="nick" placeholder="Nick">
+
+    <input id="age" placeholder="Idade">
+
+    <input id="role" placeholder="Função desejada">
+    <textarea id="reason" placeholder="Motivo para entrar no clan"></textarea>
+
+    <button onclick="sendRecruit()">
+      Enviar
+    </button>
+
+  </div>
+
+</div>
+
+<!-- SOBRE -->
+<div class="modal" id="aboutModal">
+
+  <div class="modal-content about-content">
+
+    <span onclick="closeAbout()" class="close">✖</span>
+
+    <h2>Sobre a VALK</h2>
+    
+
+    <div class="about-grid">
+
+      <div class="about-box">
+        <label>Nome do Clan</label>
+        <input type="text" value="VALK" readonly>
+      </div>
+
+      <div class="about-box">
+        <label>Foco</label>
+        <input type="text" value="PvP / Estratégia / Domínio" readonly>
+      </div>
+
+      <div class="about-box">
+        <label>Status</label>
+        <input type="text" value="Ativo" readonly>
+      </div>
+
+      <div class="about-box">
+        <label>Requisitos</label>
+
+        <textarea readonly>
+Ser ativo
+Ter respeito
+Boa habilidade
+Participar do Discord
+        </textarea>
+      </div>
+
+      <div class="about-box">
+
+        <label>Descrição</label>
+
+        <textarea readonly>
+VALK é um clan competitivo focado em PvP, organização e evolução constante dos membros.
+        </textarea>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- DISCORD -->
+<div class="modal" id="discordModal">
+
+  <div class="modal-content">
+
+    <span onclick="closeDiscord()" class="close">✖</span>
+
+    <h2>Discord</h2>
+
+    <iframe
+      src="https://discord.com/widget?id=SEU_SERVER_ID&theme=dark"
+      width="100%"
+      height="500"
+      allowtransparency="true"
+      frameborder="0">
+    </iframe>
+
+  </div>
+
+</div>
+
+<!-- MEMBROS -->
+<div class="modal" id="membersModal">
+
+  <div class="modal-content">
+
+    <span onclick="closeMembers()" class="close">✖</span>
+
+    <h2>Membros</h2>
+
+    <div class="members-grid" id="membersGrid"></div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
