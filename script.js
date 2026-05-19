@@ -14,19 +14,7 @@ particlesJS("particles-js", {
 });
 
 /* =========================
-   SUPABASE INIT
-========================= */
-
-const SUPABASE_URL = "SUA_URL";
-const SUPABASE_KEY = "SUA_KEY";
-
-const client = supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
-);
-
-/* =========================
-   ELEMENTOS
+   ELEMENTOS (SAFE)
 ========================= */
 
 const menu = document.getElementById("menu");
@@ -34,10 +22,10 @@ const recruitBtn = document.getElementById("recruitBtn");
 const aboutBtn = document.getElementById("aboutBtn");
 
 /* =========================
-   CAMERA EFFECT
+   CAMERA (ANTI BUG)
 ========================= */
 
-if (recruitBtn && aboutBtn && menu) {
+if (menu && recruitBtn && aboutBtn) {
 
   recruitBtn.addEventListener("mouseover", () => {
     menu.style.transform = "rotateY(-8deg) scale(1.03)";
@@ -47,7 +35,7 @@ if (recruitBtn && aboutBtn && menu) {
     menu.style.transform = "rotateY(8deg) scale(1.03)";
   });
 
-  document.querySelector(".buttons").addEventListener("mouseleave", () => {
+  document.querySelector(".buttons")?.addEventListener("mouseleave", () => {
     menu.style.transform = "rotateY(0deg) scale(1)";
   });
 
@@ -57,71 +45,65 @@ if (recruitBtn && aboutBtn && menu) {
    MODAIS
 ========================= */
 
-function openRecruit() {
+window.openRecruit = function () {
   document.getElementById("recruitModal").style.display = "flex";
-}
+};
 
-function closeRecruit() {
+window.closeRecruit = function () {
   document.getElementById("recruitModal").style.display = "none";
-}
+};
 
-function openAbout() {
+window.openAbout = function () {
   document.getElementById("aboutModal").style.display = "flex";
-}
+};
 
-function closeAbout() {
+window.closeAbout = function () {
   document.getElementById("aboutModal").style.display = "none";
-}
-
-function openDiscord() {
-  window.open("https://discord.gg/gdSnKZKMrf", "_blank");
-}
+};
 
 /* =========================
-   MEMBROS (SUPABASE)
+   DISCORD (LINK DIRETO)
 ========================= */
 
-window.openMembers = async function () {
+window.openDiscord = function () {
+  window.open("https://discord.gg/SEUCONVITE", "_blank");
+};
+
+/* =========================
+   MEMBROS (FIX ESTÁVEL)
+========================= */
+
+const members = [
+  { name: "Notch", role: "Líder" },
+  { name: "Steve", role: "Membro" },
+  { name: "Herobrine", role: "Elite" }
+];
+
+window.openMembers = function () {
 
   const modal = document.getElementById("membersModal");
   const grid = document.getElementById("membersGrid");
 
   modal.style.display = "flex";
-  grid.innerHTML = "Carregando...";
 
-  try {
+  if (!grid) return;
 
-    const { data, error } =
-      await client.from("members").select("*");
+  grid.innerHTML = "";
 
-    if (error) {
-      grid.innerHTML = "Erro ao carregar membros.";
-      return;
-    }
+  members.forEach(member => {
 
-    if (!data || data.length === 0) {
-      grid.innerHTML = "Nenhum membro encontrado.";
-      return;
-    }
+    const card = document.createElement("div");
+    card.className = "member-card";
 
-    grid.innerHTML = "";
+    card.innerHTML = `
+      <img src="https://mc-heads.net/avatar/${member.name}/100">
+      <h3>${member.name}</h3>
+      <div class="role">${member.role}</div>
+    `;
 
-    data.forEach(member => {
+    grid.appendChild(card);
 
-      grid.innerHTML += `
-        <div class="member-card">
-          <img src="https://mc-heads.net/avatar/${member.name}/100">
-          <h3>${member.name}</h3>
-          <div class="role">${member.role}</div>
-        </div>
-      `;
-
-    });
-
-  } catch (err) {
-    console.error(err);
-    grid.innerHTML = "Erro de conexão.";
-  }
+  });
 
 };
 
@@ -136,15 +118,15 @@ window.closeMembers = function () {
 const WEBHOOK_URL = "COLE_SUA_WEBHOOK";
 
 /* =========================
-   RECRUTAMENTO
+   RECRUTAMENTO (ANTI ERRO)
 ========================= */
 
-async function sendRecruit() {
+window.sendRecruit = async function () {
 
-  const nick = document.getElementById("nick").value;
-  const age = document.getElementById("age").value;
-  const role = document.getElementById("role").value;
-  const reason = document.getElementById("reason").value;
+  const nick = document.getElementById("nick")?.value;
+  const age = document.getElementById("age")?.value;
+  const role = document.getElementById("role")?.value;
+  const reason = document.getElementById("reason")?.value;
 
   if (!nick || !age || !role || !reason) {
     alert("Preencha todos os campos!");
@@ -172,14 +154,11 @@ async function sendRecruit() {
 
     await fetch(WEBHOOK_URL, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload)
     });
 
     alert("Recrutamento enviado!");
-
     closeRecruit();
 
     document.getElementById("nick").value = "";
@@ -192,4 +171,4 @@ async function sendRecruit() {
     alert("Erro ao enviar webhook.");
   }
 
-}
+};
