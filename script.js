@@ -17,6 +17,22 @@ particlesJS("particles-js", {
   }
 });
 
+/* SONS */
+const hoverSound = document.getElementById("hoverSound");
+const clickSound = document.getElementById("clickSound");
+
+function playHover() {
+  hoverSound.currentTime = 0;
+  hoverSound.volume = 0.3;
+  hoverSound.play();
+}
+
+function playClick() {
+  clickSound.currentTime = 0;
+  clickSound.volume = 0.5;
+  clickSound.play();
+}
+
 /* MEMBROS */
 const members = [
   { name: "Notch", role: "Líder" },
@@ -55,8 +71,13 @@ function openMembers(){
 }
 function closeMembers(){ document.getElementById("membersModal").style.display="none"; }
 
-function openDiscord(){ document.getElementById("discordModal").style.display="flex"; }
-function closeDiscord(){ document.getElementById("discordModal").style.display="none"; }
+/* FIX DISCORD */
+function openDiscord(){
+  document.getElementById("discordModal").style.display = "flex";
+}
+function closeDiscord(){
+  document.getElementById("discordModal").style.display = "none";
+}
 
 /* RECRUTAMENTO */
 function sendRecruit(){
