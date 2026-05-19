@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Clan RB</title>
+  <title>VALK Clan</title>
 
   <style>
     body {
@@ -11,36 +11,51 @@
       font-family: Arial;
       background: #0d0d0d;
       color: white;
-    }
-
-    header {
-      padding: 15px;
-      background: #111;
-      border-bottom: 2px solid red;
+      height: 100vh;
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
     }
 
-    h1 { color: red; margin: 0; }
+    .container {
+      text-align: center;
+    }
+
+    h1 {
+      color: red;
+      font-size: 70px;
+      margin: 0;
+      letter-spacing: 6px;
+      text-shadow: 0 0 15px red;
+    }
+
+    .buttons {
+      margin-top: 20px;
+    }
 
     button {
       background: red;
       border: none;
-      padding: 10px 15px;
+      padding: 12px 20px;
       color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       cursor: pointer;
+      margin: 5px;
+      font-size: 16px;
+      transition: 0.2s;
     }
 
-    button:hover { background: darkred; }
+    button:hover {
+      background: darkred;
+      transform: scale(1.05);
+    }
 
     /* MODAL */
     .modal {
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       justify-content: center;
       align-items: center;
     }
@@ -50,21 +65,35 @@
       padding: 20px;
       border-radius: 12px;
       border: 1px solid red;
-      width: 80%;
+      width: 90%;
       max-width: 800px;
+      position: relative;
     }
 
     .close {
-      float: right;
+      position: absolute;
+      right: 15px;
+      top: 10px;
       cursor: pointer;
       color: red;
       font-size: 20px;
     }
 
+    input, textarea {
+      width: 100%;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      background: #0f0f0f;
+      color: white;
+      outline: none;
+    }
+
     /* MEMBROS */
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 10px;
       margin-top: 15px;
     }
@@ -86,31 +115,24 @@
     .tag {
       margin-top: 5px;
       padding: 5px;
-      border-radius: 8px;
       background: red;
-      font-size: 12px;
-    }
-
-    input, textarea {
-      width: 100%;
-      margin: 5px 0;
-      padding: 8px;
       border-radius: 8px;
-      border: none;
+      font-size: 12px;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>CLAN RB</h1>
+<div class="container">
+  <h1>VALK</h1>
 
-  <div>
+  <div class="buttons">
     <button onclick="openRecruit()">Recrutamento</button>
+    <button onclick="openAbout()">Sobre</button>
     <button onclick="openMembers()">Membros</button>
   </div>
-</header>
+</div>
 
 <!-- RECRUTAMENTO -->
 <div class="modal" id="recruitModal">
@@ -126,11 +148,23 @@
   </div>
 </div>
 
+<!-- SOBRE -->
+<div class="modal" id="aboutModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAbout()">✖</span>
+    <h2>Sobre o Clan</h2>
+    <p>
+      O clan VALK é focado em PvP, evolução e domínio no jogo.
+      Jogadores fortes, organização e estratégia.
+    </p>
+  </div>
+</div>
+
 <!-- MEMBROS -->
 <div class="modal" id="membersModal">
   <div class="modal-content">
     <span class="close" onclick="closeMembers()">✖</span>
-    <h2>Membros do Clan</h2>
+    <h2>Membros</h2>
 
     <div class="grid" id="membersGrid"></div>
   </div>
@@ -139,35 +173,49 @@
 <script>
 const members = [
   { name: "Notch", role: "Líder" },
-  { name: "Herobrine", role: "Lenda" },
-  { name: "Steve", role: "Membro" }
+  { name: "Steve", role: "Membro" },
+  { name: "Herobrine", role: "Lenda" }
 ];
 
-// MODAIS
+/* MODAIS */
 function openRecruit() {
   document.getElementById("recruitModal").style.display = "flex";
 }
-
 function closeRecruit() {
   document.getElementById("recruitModal").style.display = "none";
+}
+
+function openAbout() {
+  document.getElementById("aboutModal").style.display = "flex";
+}
+function closeAbout() {
+  document.getElementById("aboutModal").style.display = "none";
 }
 
 function openMembers() {
   document.getElementById("membersModal").style.display = "flex";
   loadMembers();
 }
-
 function closeMembers() {
   document.getElementById("membersModal").style.display = "none";
 }
 
-// RECRUTAMENTO (fake)
+/* RECRUTAMENTO (simples) */
 function sendRecruit() {
-  alert("Enviado!");
+  const nick = document.getElementById("nick").value;
+  const age = document.getElementById("age").value;
+  const reason = document.getElementById("reason").value;
+
+  if (!nick || !age || !reason) {
+    alert("Preencha tudo!");
+    return;
+  }
+
+  alert("Recrutamento enviado!");
   closeRecruit();
 }
 
-// MEMBROS
+/* MEMBROS */
 function loadMembers() {
   const grid = document.getElementById("membersGrid");
   grid.innerHTML = "";
@@ -177,7 +225,7 @@ function loadMembers() {
     card.className = "card";
 
     card.innerHTML = `
-      <img src="https://mc-heads.net/avatar/${m.name}/100" />
+      <img src="https://mc-heads.net/avatar/${m.name}/100">
       <h3>${m.name}</h3>
       <div class="tag">${m.role}</div>
     `;
