@@ -8,21 +8,16 @@
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
+/* ===== BASE ===== */
 body {
   margin: 0;
   font-family: Arial;
-  background: #0d0d0d;
+  background: #07070a;
   overflow: hidden;
   color: white;
-  
 }
 
-  <!-- DISCORD FLUTUANTE -->
-<div class="discord-float" onclick="openDiscord()">
-  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png" alt="discord">
-</div>
-
-/* FUNDO */
+/* ===== PARTICLES ===== */
 #particles-js {
   position: absolute;
   width: 100%;
@@ -30,7 +25,7 @@ body {
   z-index: 0;
 }
 
-/* HUB CENTRAL */
+/* ===== HUB ===== */
 .container {
   position: relative;
   z-index: 2;
@@ -39,95 +34,136 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
 }
 
+/* TITLE */
 h1 {
-  font-size: 80px;
-  color: red;
-  letter-spacing: 8px;
-  text-shadow: 0 0 20px red;
+  font-size: 90px;
   margin: 0;
+  letter-spacing: 10px;
+  color: #ff1a1a;
+  text-shadow:
+    0 0 10px rgba(255,0,0,0.8),
+    0 0 25px rgba(255,0,0,0.5),
+    0 0 50px rgba(255,0,0,0.3);
 }
 
-/* BOTÕES NEON */
+/* ===== BOTÕES CENTRAIS ===== */
 .buttons {
-  margin-top: 25px;
+  margin-top: 30px;
   display: flex;
-  gap: 12px;
+  gap: 18px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-/* estilo neon */
-button {
-  background: transparent;
-  border: 2px solid red;
-  padding: 12px 22px;
+.buttons button {
+  padding: 16px 30px;
+  font-size: 17px;
+
+  background: rgba(255,0,0,0.08);
+  border: 1px solid rgba(255,0,0,0.6);
+  border-radius: 16px;
+
   color: white;
-  border-radius: 12px;
   cursor: pointer;
-  font-size: 16px;
   transition: 0.25s;
-  box-shadow: 0 0 8px red, inset 0 0 8px red;
-  text-shadow: 0 0 5px red;
+
+  box-shadow:
+    0 0 10px rgba(255,0,0,0.2),
+    inset 0 0 10px rgba(255,0,0,0.1);
 }
 
-button:hover {
+.buttons button:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 20px red, inset 0 0 12px red;
+  box-shadow: 0 0 25px red;
 }
 
-/* MEMBROS TOPO DIREITO */
+/* ===== MEMBROS (TOPO DIREITO) ===== */
 .top-right {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 18px;
+  right: 18px;
   z-index: 3;
 }
 
-/* MODAL */
+.top-right button {
+  padding: 10px 16px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+/* ===== DISCORD FLUTUANTE ===== */
+.discord-float {
+  position: fixed;
+  bottom: 18px;
+  left: 18px;
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(88,101,242,0.15);
+  border: 1px solid rgba(88,101,242,0.6);
+
+  box-shadow: 0 0 18px rgba(88,101,242,0.4);
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.discord-float:hover {
+  transform: scale(1.1);
+}
+
+.discord-float img {
+  width: 28px;
+}
+
+/* ===== MODAL ===== */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.75);
+  backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
   z-index: 10;
 }
 
 .modal-content {
-  background: #151515;
+  background: rgba(20,20,25,0.85);
+  border: 1px solid rgba(255,0,0,0.4);
   padding: 20px;
-  border-radius: 12px;
-  border: 1px solid red;
+  border-radius: 16px;
   width: 90%;
   max-width: 800px;
-  position: relative;
 }
 
+/* CLOSE */
 .close {
   position: absolute;
   right: 15px;
   top: 10px;
   cursor: pointer;
   color: red;
-  font-size: 20px;
 }
 
-/* MEMBROS */
+/* ===== MEMBROS GRID ===== */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+  gap: 12px;
   margin-top: 15px;
 }
 
 .card {
-  background: #1a1a1a;
-  border: 1px solid red;
-  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,0,0,0.3);
+  border-radius: 14px;
   padding: 10px;
   text-align: center;
 }
@@ -149,11 +185,11 @@ button:hover {
 /* INPUTS */
 input, textarea {
   width: 100%;
-  margin: 5px 0;
+  margin: 6px 0;
   padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #0f0f0f;
+  border-radius: 10px;
+  border: 1px solid rgba(255,0,0,0.3);
+  background: rgba(0,0,0,0.4);
   color: white;
 }
 </style>
@@ -163,9 +199,14 @@ input, textarea {
 
 <div id="particles-js"></div>
 
-<!-- BOTÃO MEMBROS (CANTO SUPERIOR DIREITO) -->
+<!-- MEMBROS -->
 <div class="top-right">
   <button onclick="openMembers()">Membros</button>
+</div>
+
+<!-- DISCORD -->
+<div class="discord-float" onclick="openDiscord()">
+  <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
 </div>
 
 <!-- HUB -->
@@ -175,30 +216,35 @@ input, textarea {
   <div class="buttons">
     <button onclick="openRecruit()">Recrutamento</button>
     <button onclick="openAbout()">Sobre</button>
-    <button onclick="openDiscord()">Discord</button>
   </div>
 </div>
 
-<!-- MODAIS -->
+<!-- RECRUTAMENTO -->
 <div class="modal" id="recruitModal">
   <div class="modal-content">
     <span class="close" onclick="closeRecruit()">✖</span>
     <h2>Recrutamento</h2>
+
     <input id="nick" placeholder="Nick Minecraft">
     <input id="age" placeholder="Idade">
     <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
+
     <button onclick="sendRecruit()">Enviar</button>
   </div>
 </div>
 
+<!-- SOBRE -->
 <div class="modal" id="aboutModal">
   <div class="modal-content">
     <span class="close" onclick="closeAbout()">✖</span>
     <h2>Sobre o Clan</h2>
-    <p>VALK é um clan focado em PvP, estratégia e domínio total.</p>
+    <p>
+      VALK é um clan focado em PvP, estratégia e domínio total.
+    </p>
   </div>
 </div>
 
+<!-- MEMBROS -->
 <div class="modal" id="membersModal">
   <div class="modal-content">
     <span class="close" onclick="closeMembers()">✖</span>
@@ -207,6 +253,7 @@ input, textarea {
   </div>
 </div>
 
+<!-- DISCORD MODAL -->
 <div class="modal" id="discordModal">
   <div class="modal-content">
     <span class="close" onclick="closeDiscord()">✖</span>
@@ -221,6 +268,7 @@ input, textarea {
 </div>
 
 <script>
+/* PARTICLES */
 particlesJS("particles-js", {
   particles: {
     number: { value: 60 },
@@ -228,14 +276,12 @@ particlesJS("particles-js", {
     shape: { type: "circle" },
     opacity: { value: 0.5 },
     size: { value: 3 },
-    line_linked: {
-      enable: true,
-      color: "#ff0000"
-    },
+    line_linked: { enable: true, color: "#ff0000" },
     move: { enable: true, speed: 2 }
   }
 });
 
+/* MEMBROS */
 const members = [
   { name: "Notch", role: "Líder" },
   { name: "Steve", role: "Membro" },
