@@ -1,92 +1,357 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<title>VALK</title>
 
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+    content="width=device-width">
+
+    <title>VALK</title>
+
+    <link rel="stylesheet"
+    href="style.css">
+
 </head>
-
 <body>
 
-<!-- TOPO -->
-<div class="topBar">
-    <button class="membersBtn" onclick="abrirMembros()">
-        MEMBROS
-    </button>
-</div>
 
-<!-- HERO -->
+
+<!-- HOME -->
+
 <section class="hero">
 
     <h1>VALK</h1>
 
-    <p>Um dos melhores clans do survival</p>
+
+    <p>
+
+        um dos melhores clans do survival
+
+    </p>
+
+
 
     <div class="buttons">
 
-        <a class="mainBtn" href="#" onclick="abrirForm()">
+
+        <!-- RECRUTAMENTO -->
+
+        <a
+
+        class="mainBtn"
+
+        href="#"
+
+        onclick="abrirForm()">
+
             RECRUTAMENTO
+
         </a>
 
-        <a class="secondBtn" href="sobre.html">
+
+
+        <!-- SOBRE -->
+
+        <a
+
+        class="secondBtn"
+
+        href="sobre.html">
+
             SOBRE
+
         </a>
+
 
     </div>
+
 
 </section>
 
-<!-- MODAL RECRUTAMENTO -->
-<div id="recruitModal" class="modal">
+
+
+
+
+<!-- MODAL -->
+
+<div
+id="recruitModal"
+class="modal">
+
+
 
     <div class="modalBox">
 
+
         <h1>RECRUTAMENTO</h1>
 
-        <input type="text" id="nick" placeholder="Seu nick">
+
+
+        <!-- nick -->
+
+        <input
+        type="text"
+
+        id="nick"
+
+        placeholder="Seu nick">
+
+
+
+        <!-- função -->
 
         <select id="funcao">
+
             <option>PVP</option>
+
             <option>FARM MAKER</option>
+
             <option>POT MAKER</option>
+
         </select>
 
-        <textarea id="descricao" placeholder="Fale sobre você"></textarea>
 
-        <textarea id="motivo" placeholder="Por que quer entrar na VALK?"></textarea>
 
-        <button class="discordBtn" onclick="enviarForm()">
+        <!-- descrição -->
+
+        <textarea
+
+        id="descricao"
+
+        placeholder="Fale sobre você">
+
+        </textarea>
+
+
+
+        <!-- motivo -->
+
+        <textarea
+
+        id="motivo"
+
+        placeholder="Por que quer entrar na VALK?">
+
+        </textarea>
+
+
+
+
+        <!-- enviar -->
+
+        <button
+
+        onclick="enviarForm()"
+
+        class="discordBtn">
+
             ENVIAR
+
         </button>
 
-        <button class="closeBtn" onclick="fecharForm()">
+
+
+
+        <!-- fechar -->
+
+        <button
+
+        onclick="fecharForm()"
+
+        class="closeBtn">
+
             FECHAR
+
         </button>
+
 
     </div>
 
-</div>
-
-<!-- MODAL MEMBROS -->
-<div id="membersModal" class="modal">
-
-    <div class="membersBox">
-
-        <h1>MEMBROS VALK</h1>
-
-        <div id="membersGrid" class="membersGrid"></div>
-
-        <button class="closeBtn" onclick="fecharMembros()">
-            FECHAR
-        </button>
-
-    </div>
 
 </div>
 
-<script src="script.js"></script>
+
+
+
+
+<script>
+
+function abrirForm(){
+
+    document
+    .getElementById("recruitModal")
+    .style.display = "flex"
+
+}
+
+
+
+function fecharForm(){
+
+    document
+    .getElementById("recruitModal")
+    .style.display = "none"
+
+}
+
+
+
+
+async function enviarForm(){
+
+
+    let nick =
+    document
+    .getElementById("nick")
+    .value
+
+
+
+    let funcao =
+    document
+    .getElementById("funcao")
+    .value
+
+
+
+    let descricao =
+    document
+    .getElementById("descricao")
+    .value
+
+
+
+    let motivo =
+    document
+    .getElementById("motivo")
+    .value
+
+
+
+
+    if(
+        nick == "" ||
+        descricao == "" ||
+        motivo == ""
+    ){
+
+        alert("Preencha todos os campos")
+
+        return
+
+    }
+
+
+
+
+    let webhook =
+
+    "COLE_WEBHOOK_AQUI"
+
+
+
+
+    let mensagem = {
+
+        embeds:[{
+
+            title:
+            "⚔️ NOVO RECRUTAMENTO VALK ⚔️",
+
+            color:0xff003c,
+
+
+
+            fields:[
+
+                {
+
+                    name:
+                    "👤 NICK DO JOGADOR",
+
+                    value:nick
+
+                },
+
+
+
+                {
+
+                    name:
+                    "⚔️ FUNÇÃO",
+
+                    value:funcao
+
+                },
+
+
+
+                {
+
+                    name:
+                    "📜 DESCRIÇÃO",
+
+                    value:descricao
+
+                },
+
+
+
+                {
+
+                    name:
+                    "🔥 POR QUE ENTRAR?",
+
+                    value:motivo
+
+                }
+
+            ],
+
+
+
+            footer:{
+
+                text:"VALK RECRUTAMENTO"
+
+            }
+
+        }]
+    }
+
+
+
+
+    await fetch(webhook,{
+
+        method:"POST",
+
+        headers:{
+            "Content-Type":"application/json"
+        },
+
+        body:JSON.stringify(mensagem)
+
+    })
+
+
+
+
+    alert(
+    "Recrutamento enviado!"
+    )
+
+
+
+
+    fecharForm()
+
+}
+
+</script>
+
+
 
 </body>
 </html>
