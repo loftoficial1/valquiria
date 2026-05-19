@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALK HUB 3D</title>
+<title>VALK HUB</title>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 <link rel="stylesheet" href="style.css">
@@ -13,35 +13,31 @@
 
 <div id="particles-js"></div>
 
-<!-- CAMERA WRAPPER -->
-<div class="scene">
-
-  <div class="menu" id="menu">
-
-    <h1>VALK</h1>
-
-    <div class="buttons">
-      <button onmouseenter="tilt(-8)" onmouseleave="resetTilt()" onclick="openRecruit()">
-        Recrutamento
-      </button>
-
-      <button onmouseenter="tilt(8)" onmouseleave="resetTilt()" onclick="openAbout()">
-        Sobre
-      </button>
-    </div>
-
-  </div>
-
-</div>
-
 <!-- DISCORD -->
 <div class="discord" onclick="openDiscord()">
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
 </div>
 
+<!-- MEMBROS -->
+<div class="members-btn">
+  <button onclick="openMembers()">Membros</button>
+</div>
+
+<!-- HUB -->
+<div class="scene">
+  <div class="menu">
+    <h1>VALK</h1>
+
+    <div class="buttons">
+      <button onclick="openRecruit()">Recrutamento</button>
+      <button onclick="openAbout()">Sobre</button>
+    </div>
+  </div>
+</div>
+
 <!-- MODAIS -->
 <div class="modal" id="recruitModal">
-  <div class="modal-content">
+  <div class="box">
     <span onclick="closeRecruit()" class="close">✖</span>
     <h2>Recrutamento</h2>
 
@@ -54,23 +50,35 @@
 </div>
 
 <div class="modal" id="aboutModal">
-  <div class="modal-content">
+  <div class="box">
     <span onclick="closeAbout()" class="close">✖</span>
     <h2>Sobre</h2>
     <p>VALK é um clan focado em PvP e domínio.</p>
   </div>
 </div>
 
+<div class="modal" id="membersModal">
+  <div class="box">
+    <span onclick="closeMembers()" class="close">✖</span>
+    <h2>Membros</h2>
+    <div class="grid" id="membersGrid"></div>
+  </div>
+</div>
+
 <div class="modal" id="discordModal">
-  <div class="modal-content">
+  <div class="box">
     <span onclick="closeDiscord()" class="close">✖</span>
     <h2>Discord</h2>
 
     <iframe
       src="https://discord.com/widget?id=YOUR_ID&theme=dark"
-      width="100%" height="400"></iframe>
+      width="100%" height="350"></iframe>
   </div>
 </div>
+
+<!-- SONS -->
+<audio id="hoverSound" src="https://www.myinstants.com/media/sounds/menu-click.wav"></audio>
+<audio id="clickSound" src="https://www.myinstants.com/media/sounds/mouse-click.wav"></audio>
 
 <script src="script.js"></script>
 </body>
