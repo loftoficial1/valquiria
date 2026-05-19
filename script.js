@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VALK HUB</title>
 
-<!-- PARTICLES JS -->
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
 <style>
@@ -17,7 +16,7 @@ body {
   color: white;
 }
 
-/* FUNDO PARTÍCULAS */
+/* FUNDO */
 #particles-js {
   position: absolute;
   width: 100%;
@@ -45,30 +44,40 @@ h1 {
   margin: 0;
 }
 
-/* BOTÕES FLUIDOS */
+/* BOTÕES NEON */
 .buttons {
   margin-top: 25px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
   justify-content: center;
 }
 
+/* estilo neon */
 button {
-  background: linear-gradient(145deg, red, darkred);
-  border: none;
+  background: transparent;
+  border: 2px solid red;
   padding: 12px 22px;
   color: white;
   border-radius: 12px;
   cursor: pointer;
   font-size: 16px;
   transition: 0.25s;
-  box-shadow: 0 0 10px rgba(255,0,0,0.5);
+  box-shadow: 0 0 8px red, inset 0 0 8px red;
+  text-shadow: 0 0 5px red;
 }
 
 button:hover {
   transform: scale(1.08);
-  box-shadow: 0 0 20px red;
+  box-shadow: 0 0 20px red, inset 0 0 12px red;
+}
+
+/* MEMBROS TOPO DIREITO */
+.top-right {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 3;
 }
 
 /* MODAL */
@@ -148,68 +157,64 @@ input, textarea {
 
 <div id="particles-js"></div>
 
+<!-- BOTÃO MEMBROS (CANTO SUPERIOR DIREITO) -->
+<div class="top-right">
+  <button onclick="openMembers()">Membros</button>
+</div>
+
+<!-- HUB -->
 <div class="container">
   <h1>VALK</h1>
 
   <div class="buttons">
     <button onclick="openRecruit()">Recrutamento</button>
     <button onclick="openAbout()">Sobre</button>
-    <button onclick="openMembers()">Membros</button>
     <button onclick="openDiscord()">Discord</button>
   </div>
 </div>
 
-<!-- MODAL RECRUTAMENTO -->
+<!-- MODAIS -->
 <div class="modal" id="recruitModal">
   <div class="modal-content">
     <span class="close" onclick="closeRecruit()">✖</span>
     <h2>Recrutamento</h2>
-
     <input id="nick" placeholder="Nick Minecraft">
     <input id="age" placeholder="Idade">
     <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
-
     <button onclick="sendRecruit()">Enviar</button>
   </div>
 </div>
 
-<!-- MODAL SOBRE -->
 <div class="modal" id="aboutModal">
   <div class="modal-content">
     <span class="close" onclick="closeAbout()">✖</span>
     <h2>Sobre o Clan</h2>
-    <p>VALK é um clan focado em PvP, evolução e domínio. Estratégia e força acima de tudo.</p>
+    <p>VALK é um clan focado em PvP, estratégia e domínio total.</p>
   </div>
 </div>
 
-<!-- MODAL MEMBROS -->
 <div class="modal" id="membersModal">
   <div class="modal-content">
     <span class="close" onclick="closeMembers()">✖</span>
     <h2>Membros</h2>
-
     <div class="grid" id="membersGrid"></div>
   </div>
 </div>
 
-<!-- MODAL DISCORD -->
 <div class="modal" id="discordModal">
   <div class="modal-content">
     <span class="close" onclick="closeDiscord()">✖</span>
-    <h2>Discord do Clan</h2>
+    <h2>Discord</h2>
 
     <iframe 
       src="https://discord.com/widget?id=YOUR_DISCORD_ID&theme=dark"
-      width="100%" 
-      height="400"
-      allowtransparency="true"
+      width="100%" height="400"
       frameborder="0">
     </iframe>
   </div>
 </div>
 
 <script>
-/* PARTICLES CONFIG */
 particlesJS("particles-js", {
   particles: {
     number: { value: 60 },
@@ -219,17 +224,12 @@ particlesJS("particles-js", {
     size: { value: 3 },
     line_linked: {
       enable: true,
-      color: "#ff0000",
-      opacity: 0.4
+      color: "#ff0000"
     },
-    move: {
-      enable: true,
-      speed: 2
-    }
+    move: { enable: true, speed: 2 }
   }
 });
 
-/* MEMBROS */
 const members = [
   { name: "Notch", role: "Líder" },
   { name: "Steve", role: "Membro" },
