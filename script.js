@@ -1,22 +1,282 @@
-function showSection(id) {
-  document.querySelectorAll("section").forEach(sec => {
-    sec.classList.remove("active");
-  });
-  document.getElementById(id).classList.add("active");
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VALK HUB</title>
+
+<!-- PARTICLES JS -->
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: #0d0d0d;
+  overflow: hidden;
+  color: white;
 }
 
-// membros fake (você pode trocar depois)
+/* FUNDO PARTÍCULAS */
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* HUB CENTRAL */
+.container {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 80px;
+  color: red;
+  letter-spacing: 8px;
+  text-shadow: 0 0 20px red;
+  margin: 0;
+}
+
+/* BOTÕES FLUIDOS */
+.buttons {
+  margin-top: 25px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  background: linear-gradient(145deg, red, darkred);
+  border: none;
+  padding: 12px 22px;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.25s;
+  box-shadow: 0 0 10px rgba(255,0,0,0.5);
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 20px red;
+}
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal-content {
+  background: #151515;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid red;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  cursor: pointer;
+  color: red;
+  font-size: 20px;
+}
+
+/* MEMBROS */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.card {
+  background: #1a1a1a;
+  border: 1px solid red;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+
+.card img {
+  width: 80px;
+  height: 80px;
+  image-rendering: pixelated;
+}
+
+.tag {
+  margin-top: 5px;
+  padding: 5px;
+  background: red;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+/* INPUTS */
+input, textarea {
+  width: 100%;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  background: #0f0f0f;
+  color: white;
+}
+</style>
+</head>
+
+<body>
+
+<div id="particles-js"></div>
+
+<div class="container">
+  <h1>VALK</h1>
+
+  <div class="buttons">
+    <button onclick="openRecruit()">Recrutamento</button>
+    <button onclick="openAbout()">Sobre</button>
+    <button onclick="openMembers()">Membros</button>
+    <button onclick="openDiscord()">Discord</button>
+  </div>
+</div>
+
+<!-- MODAL RECRUTAMENTO -->
+<div class="modal" id="recruitModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeRecruit()">✖</span>
+    <h2>Recrutamento</h2>
+
+    <input id="nick" placeholder="Nick Minecraft">
+    <input id="age" placeholder="Idade">
+    <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
+
+    <button onclick="sendRecruit()">Enviar</button>
+  </div>
+</div>
+
+<!-- MODAL SOBRE -->
+<div class="modal" id="aboutModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeAbout()">✖</span>
+    <h2>Sobre o Clan</h2>
+    <p>VALK é um clan focado em PvP, evolução e domínio. Estratégia e força acima de tudo.</p>
+  </div>
+</div>
+
+<!-- MODAL MEMBROS -->
+<div class="modal" id="membersModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMembers()">✖</span>
+    <h2>Membros</h2>
+
+    <div class="grid" id="membersGrid"></div>
+  </div>
+</div>
+
+<!-- MODAL DISCORD -->
+<div class="modal" id="discordModal">
+  <div class="modal-content">
+    <span class="close" onclick="closeDiscord()">✖</span>
+    <h2>Discord do Clan</h2>
+
+    <iframe 
+      src="https://discord.com/widget?id=YOUR_DISCORD_ID&theme=dark"
+      width="100%" 
+      height="400"
+      allowtransparency="true"
+      frameborder="0">
+    </iframe>
+  </div>
+</div>
+
+<script>
+/* PARTICLES CONFIG */
+particlesJS("particles-js", {
+  particles: {
+    number: { value: 60 },
+    color: { value: "#ff0000" },
+    shape: { type: "circle" },
+    opacity: { value: 0.5 },
+    size: { value: 3 },
+    line_linked: {
+      enable: true,
+      color: "#ff0000",
+      opacity: 0.4
+    },
+    move: {
+      enable: true,
+      speed: 2
+    }
+  }
+});
+
+/* MEMBROS */
 const members = [
-  { name: "RB Leader" },
-  { name: "Player1" },
-  { name: "Player2" }
+  { name: "Notch", role: "Líder" },
+  { name: "Steve", role: "Membro" },
+  { name: "Herobrine", role: "Lenda" }
 ];
 
-const grid = document.getElementById("membersGrid");
+/* MODAIS */
+function openRecruit(){ document.getElementById("recruitModal").style.display="flex"; }
+function closeRecruit(){ document.getElementById("recruitModal").style.display="none"; }
 
-members.forEach(m => {
-  const div = document.createElement("div");
-  div.className = "card";
-  div.innerHTML = `<h3>${m.name}</h3>`;
-  grid.appendChild(div);
-});
+function openAbout(){ document.getElementById("aboutModal").style.display="flex"; }
+function closeAbout(){ document.getElementById("aboutModal").style.display="none"; }
+
+function openMembers(){
+  document.getElementById("membersModal").style.display="flex";
+  loadMembers();
+}
+function closeMembers(){ document.getElementById("membersModal").style.display="none"; }
+
+function openDiscord(){ document.getElementById("discordModal").style.display="flex"; }
+function closeDiscord(){ document.getElementById("discordModal").style.display="none"; }
+
+/* RECRUTAMENTO */
+function sendRecruit(){
+  alert("Enviado!");
+  closeRecruit();
+}
+
+/* MEMBROS */
+function loadMembers(){
+  const grid = document.getElementById("membersGrid");
+  grid.innerHTML = "";
+
+  members.forEach(m => {
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <img src="https://mc-heads.net/avatar/${m.name}/100">
+      <h3>${m.name}</h3>
+      <div class="tag">${m.role}</div>
+    `;
+
+    grid.appendChild(card);
+  });
+}
+</script>
+
+</body>
+</html>
