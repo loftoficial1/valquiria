@@ -1,220 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALK HUB</title>
-
-<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-
-<style>
-body {
-  margin: 0;
-  font-family: Arial;
-  background: #0d0d0d;
-  overflow: hidden;
-  color: white;
-}
-
-/* FUNDO */
-#particles-js {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-}
-
-/* HUB CENTRAL */
-.container {
-  position: relative;
-  z-index: 2;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-h1 {
-  font-size: 80px;
-  color: red;
-  letter-spacing: 8px;
-  text-shadow: 0 0 20px red;
-  margin: 0;
-}
-
-/* BOTÕES NEON */
-.buttons {
-  margin-top: 25px;
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* estilo neon */
-button {
-  background: transparent;
-  border: 2px solid red;
-  padding: 12px 22px;
-  color: white;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 16px;
-  transition: 0.25s;
-  box-shadow: 0 0 8px red, inset 0 0 8px red;
-  text-shadow: 0 0 5px red;
-}
-
-button:hover {
-  transform: scale(1.08);
-  box-shadow: 0 0 20px red, inset 0 0 12px red;
-}
-
-/* MEMBROS TOPO DIREITO */
-.top-right {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  z-index: 3;
-}
-
-/* MODAL */
-.modal {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-}
-
-.modal-content {
-  background: #151515;
-  padding: 20px;
-  border-radius: 12px;
-  border: 1px solid red;
-  width: 90%;
-  max-width: 800px;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  right: 15px;
-  top: 10px;
-  cursor: pointer;
-  color: red;
-  font-size: 20px;
-}
-
-/* MEMBROS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.card {
-  background: #1a1a1a;
-  border: 1px solid red;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-}
-
-.card img {
-  width: 80px;
-  height: 80px;
-  image-rendering: pixelated;
-}
-
-.tag {
-  margin-top: 5px;
-  padding: 5px;
-  background: red;
-  border-radius: 8px;
-  font-size: 12px;
-}
-
-/* INPUTS */
-input, textarea {
-  width: 100%;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 8px;
-  border: none;
-  background: #0f0f0f;
-  color: white;
-}
-</style>
-</head>
-
-<body>
-
-<div id="particles-js"></div>
-
-<!-- BOTÃO MEMBROS (CANTO SUPERIOR DIREITO) -->
-<div class="top-right">
-  <button onclick="openMembers()">Membros</button>
-</div>
-
-<!-- HUB -->
-<div class="container">
-  <h1>VALK</h1>
-
-  <div class="buttons">
-    <button onclick="openRecruit()">Recrutamento</button>
-    <button onclick="openAbout()">Sobre</button>
-    <button onclick="openDiscord()">Discord</button>
-  </div>
-</div>
-
-<!-- MODAIS -->
-<div class="modal" id="recruitModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeRecruit()">✖</span>
-    <h2>Recrutamento</h2>
-    <input id="nick" placeholder="Nick Minecraft">
-    <input id="age" placeholder="Idade">
-    <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
-    <button onclick="sendRecruit()">Enviar</button>
-  </div>
-</div>
-
-<div class="modal" id="aboutModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeAbout()">✖</span>
-    <h2>Sobre o Clan</h2>
-    <p>VALK é um clan focado em PvP, estratégia e domínio total.</p>
-  </div>
-</div>
-
-<div class="modal" id="membersModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeMembers()">✖</span>
-    <h2>Membros</h2>
-    <div class="grid" id="membersGrid"></div>
-  </div>
-</div>
-
-<div class="modal" id="discordModal">
-  <div class="modal-content">
-    <span class="close" onclick="closeDiscord()">✖</span>
-    <h2>Discord</h2>
-
-    <iframe 
-      src="https://discord.com/widget?id=YOUR_DISCORD_ID&theme=dark"
-      width="100%" height="400"
-      frameborder="0">
-    </iframe>
-  </div>
-</div>
-
-<script>
+/* =======================
+   PARTICLES (opcional já no HTML)
+======================= */
 particlesJS("particles-js", {
   particles: {
     number: { value: 60 },
@@ -226,40 +12,26 @@ particlesJS("particles-js", {
       enable: true,
       color: "#ff0000"
     },
-    move: { enable: true, speed: 2 }
+    move: {
+      enable: true,
+      speed: 2
+    }
   }
 });
 
+/* =======================
+   MEMBROS
+======================= */
 const members = [
   { name: "Notch", role: "Líder" },
   { name: "Steve", role: "Membro" },
   { name: "Herobrine", role: "Lenda" }
 ];
 
-/* MODAIS */
-function openRecruit(){ document.getElementById("recruitModal").style.display="flex"; }
-function closeRecruit(){ document.getElementById("recruitModal").style.display="none"; }
-
-function openAbout(){ document.getElementById("aboutModal").style.display="flex"; }
-function closeAbout(){ document.getElementById("aboutModal").style.display="none"; }
-
-function openMembers(){
-  document.getElementById("membersModal").style.display="flex";
-  loadMembers();
-}
-function closeMembers(){ document.getElementById("membersModal").style.display="none"; }
-
-function openDiscord(){ document.getElementById("discordModal").style.display="flex"; }
-function closeDiscord(){ document.getElementById("discordModal").style.display="none"; }
-
-/* RECRUTAMENTO */
-function sendRecruit(){
-  alert("Enviado!");
-  closeRecruit();
-}
-
-/* MEMBROS */
-function loadMembers(){
+/* =======================
+   MEMBROS LOAD
+======================= */
+function loadMembers() {
   const grid = document.getElementById("membersGrid");
   grid.innerHTML = "";
 
@@ -276,7 +48,76 @@ function loadMembers(){
     grid.appendChild(card);
   });
 }
-</script>
 
-</body>
-</html>
+/* =======================
+   MODAIS - ABRIR
+======================= */
+function openRecruit() {
+  document.getElementById("recruitModal").style.display = "flex";
+}
+
+function openAbout() {
+  document.getElementById("aboutModal").style.display = "flex";
+}
+
+function openMembers() {
+  document.getElementById("membersModal").style.display = "flex";
+  loadMembers();
+}
+
+function openDiscord() {
+  document.getElementById("discordModal").style.display = "flex";
+}
+
+/* =======================
+   MODAIS - FECHAR
+======================= */
+function closeRecruit() {
+  document.getElementById("recruitModal").style.display = "none";
+}
+
+function closeAbout() {
+  document.getElementById("aboutModal").style.display = "none";
+}
+
+function closeMembers() {
+  document.getElementById("membersModal").style.display = "none";
+}
+
+function closeDiscord() {
+  document.getElementById("discordModal").style.display = "none";
+}
+
+/* =======================
+   RECRUTAMENTO
+======================= */
+function sendRecruit() {
+  const nick = document.getElementById("nick").value;
+  const age = document.getElementById("age").value;
+  const reason = document.getElementById("reason").value;
+
+  if (!nick || !age || !reason) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Recrutamento enviado com sucesso!");
+  closeRecruit();
+
+  document.getElementById("nick").value = "";
+  document.getElementById("age").value = "";
+  document.getElementById("reason").value = "";
+}
+
+/* =======================
+   FECHAR AO CLICAR FORA
+======================= */
+window.onclick = function(event) {
+  const modals = document.querySelectorAll(".modal");
+
+  modals.forEach(m => {
+    if (event.target === m) {
+      m.style.display = "none";
+    }
+  });
+};
