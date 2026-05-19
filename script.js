@@ -17,7 +17,7 @@ particlesJS("particles-js", {
   }
 });
 
-/* MEMBERS */
+/* MEMBROS */
 const members = [
   { name: "Notch", role: "Líder" },
   { name: "Steve", role: "Membro" },
@@ -60,6 +60,19 @@ function closeDiscord(){ document.getElementById("discordModal").style.display="
 
 /* RECRUTAMENTO */
 function sendRecruit(){
-  alert("Enviado!");
+  const nick = document.getElementById("nick").value;
+  const age = document.getElementById("age").value;
+  const reason = document.getElementById("reason").value;
+
+  if(!nick || !age || !reason){
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  alert("Enviado com sucesso!");
   closeRecruit();
+
+  document.getElementById("nick").value = "";
+  document.getElementById("age").value = "";
+  document.getElementById("reason").value = "";
 }
