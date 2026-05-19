@@ -1,6 +1,4 @@
-/* =======================
-   PARTICLES (opcional já no HTML)
-======================= */
+/* PARTICLES */
 particlesJS("particles-js", {
   particles: {
     number: { value: 60 },
@@ -19,18 +17,13 @@ particlesJS("particles-js", {
   }
 });
 
-/* =======================
-   MEMBROS
-======================= */
+/* MEMBERS */
 const members = [
   { name: "Notch", role: "Líder" },
   { name: "Steve", role: "Membro" },
   { name: "Herobrine", role: "Lenda" }
 ];
 
-/* =======================
-   MEMBROS LOAD
-======================= */
 function loadMembers() {
   const grid = document.getElementById("membersGrid");
   grid.innerHTML = "";
@@ -49,75 +42,24 @@ function loadMembers() {
   });
 }
 
-/* =======================
-   MODAIS - ABRIR
-======================= */
-function openRecruit() {
-  document.getElementById("recruitModal").style.display = "flex";
-}
+/* MODAIS */
+function openRecruit(){ document.getElementById("recruitModal").style.display="flex"; }
+function closeRecruit(){ document.getElementById("recruitModal").style.display="none"; }
 
-function openAbout() {
-  document.getElementById("aboutModal").style.display = "flex";
-}
+function openAbout(){ document.getElementById("aboutModal").style.display="flex"; }
+function closeAbout(){ document.getElementById("aboutModal").style.display="none"; }
 
-function openMembers() {
-  document.getElementById("membersModal").style.display = "flex";
+function openMembers(){
+  document.getElementById("membersModal").style.display="flex";
   loadMembers();
 }
+function closeMembers(){ document.getElementById("membersModal").style.display="none"; }
 
-function openDiscord() {
-  document.getElementById("discordModal").style.display = "flex";
-}
+function openDiscord(){ document.getElementById("discordModal").style.display="flex"; }
+function closeDiscord(){ document.getElementById("discordModal").style.display="none"; }
 
-/* =======================
-   MODAIS - FECHAR
-======================= */
-function closeRecruit() {
-  document.getElementById("recruitModal").style.display = "none";
-}
-
-function closeAbout() {
-  document.getElementById("aboutModal").style.display = "none";
-}
-
-function closeMembers() {
-  document.getElementById("membersModal").style.display = "none";
-}
-
-function closeDiscord() {
-  document.getElementById("discordModal").style.display = "none";
-}
-
-/* =======================
-   RECRUTAMENTO
-======================= */
-function sendRecruit() {
-  const nick = document.getElementById("nick").value;
-  const age = document.getElementById("age").value;
-  const reason = document.getElementById("reason").value;
-
-  if (!nick || !age || !reason) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  alert("Recrutamento enviado com sucesso!");
+/* RECRUTAMENTO */
+function sendRecruit(){
+  alert("Enviado!");
   closeRecruit();
-
-  document.getElementById("nick").value = "";
-  document.getElementById("age").value = "";
-  document.getElementById("reason").value = "";
 }
-
-/* =======================
-   FECHAR AO CLICAR FORA
-======================= */
-window.onclick = function(event) {
-  const modals = document.querySelectorAll(".modal");
-
-  modals.forEach(m => {
-    if (event.target === m) {
-      m.style.display = "none";
-    }
-  });
-};
