@@ -1,13 +1,12 @@
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   background: #0d0d0d;
   color: white;
 }
 
-/* HEADER */
 header {
-  padding: 15px 20px;
+  padding: 15px;
   background: #111;
   border-bottom: 2px solid red;
   display: flex;
@@ -15,13 +14,11 @@ header {
   align-items: center;
 }
 
-header h1 {
-  margin: 0;
-  color: red;
-  letter-spacing: 2px;
+h1 { 
+  color: red; 
+  margin: 0; 
 }
 
-/* BOTÕES */
 button {
   background: red;
   border: none;
@@ -29,24 +26,20 @@ button {
   color: white;
   border-radius: 8px;
   cursor: pointer;
-  margin-left: 5px;
-  transition: 0.2s;
 }
 
-button:hover {
-  background: darkred;
-  transform: scale(1.05);
+button:hover { 
+  background: darkred; 
 }
 
-/* MODAL BASE */
+/* MODAL */
 .modal {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
-  z-index: 10;
 }
 
 .modal-content {
@@ -54,76 +47,51 @@ button:hover {
   padding: 20px;
   border-radius: 12px;
   border: 1px solid red;
-  width: 90%;
+  width: 80%;
   max-width: 800px;
-  position: relative;
 }
 
-/* BOTÃO FECHAR */
 .close {
-  position: absolute;
-  top: 10px;
-  right: 15px;
+  float: right;
   cursor: pointer;
   color: red;
   font-size: 20px;
 }
 
-/* GRID DE MEMBROS */
+/* MEMBROS */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
   margin-top: 15px;
 }
 
-/* CARD MEMBRO */
 .card {
   background: #1a1a1a;
   border: 1px solid red;
   border-radius: 12px;
-  padding: 12px;
+  padding: 10px;
   text-align: center;
-  transition: 0.2s;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 0 10px red;
-}
-
-/* SKIN MINECRAFT */
 .card img {
   width: 80px;
   height: 80px;
   image-rendering: pixelated;
-  border-radius: 8px;
-  margin-bottom: 5px;
 }
 
-/* TAG FUNÇÃO */
 .tag {
-  margin-top: 6px;
+  margin-top: 5px;
   padding: 5px;
   border-radius: 8px;
   background: red;
   font-size: 12px;
 }
 
-/* INPUTS */
 input, textarea {
   width: 100%;
   margin: 5px 0;
-  padding: 10px;
+  padding: 8px;
   border-radius: 8px;
   border: none;
-  outline: none;
-  background: #0f0f0f;
-  color: white;
-}
-
-/* TEXTO */
-h2 {
-  margin-top: 0;
-  color: red;
 }
