@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>VALK</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- TOPO -->
+<div class="topBar">
+    <button class="membersBtn" onclick="abrirMembros()">
+        MEMBROS
+    </button>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+
+    <h1>VALK</h1>
+
+    <p>Um dos melhores clans do survival</p>
+
+    <div class="buttons">
+
+        <a class="mainBtn" href="#" onclick="abrirForm()">
+            RECRUTAMENTO
+        </a>
+
+        <a class="secondBtn" href="sobre.html">
+            SOBRE
+        </a>
+
+    </div>
+
+</section>
+
+<!-- MODAL RECRUTAMENTO -->
+<div id="recruitModal" class="modal">
+
+    <div class="modalBox">
+
+        <h1>RECRUTAMENTO</h1>
+
+        <input type="text" id="nick" placeholder="Seu nick">
+
+        <select id="funcao">
+            <option>PVP</option>
+            <option>FARM MAKER</option>
+            <option>POT MAKER</option>
+        </select>
+
+        <textarea id="descricao" placeholder="Fale sobre você"></textarea>
+
+        <textarea id="motivo" placeholder="Por que quer entrar na VALK?"></textarea>
+
+        <button class="discordBtn" onclick="enviarForm()">
+            ENVIAR
+        </button>
+
+        <button class="closeBtn" onclick="fecharForm()">
+            FECHAR
+        </button>
+
+    </div>
+
+</div>
+
+<!-- MODAL MEMBROS -->
+<div id="membersModal" class="modal">
+
+    <div class="membersBox">
+
+        <h1>MEMBROS VALK</h1>
+
+        <!-- AGORA DINÂMICO -->
+        <div id="membersGrid" class="membersGrid"></div>
+
+        <button class="closeBtn" onclick="fecharMembros()">
+            FECHAR
+        </button>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+<script>
+async function loadMembers() {
+    const res = await fetch("/members");
+    const data = await res.json();
+
+    const grid = document.getElementById("membersGrid");
+    grid.innerHTML = "";
+
+    data.forEach(m => {
+        grid.innerHTML += `
+            <div class="memberCard">
+                <img src="https://mc-heads.net/avatar/${m.nick}/100">
+                <h2>${m.nick}</h2>
+                <div class="cargo">${m.cargo}</div>
+            </div>
+        `;
+    });
+}
+
+// carregar ao abrir página
+window.addEventListener("load", loadMembers);
+
+// abrir modal já atualiza lista
+function abrirMembros(){
+    document.getElementById("membersModal").style.display = "flex";
+    loadMembers();
+}
+
+function fecharMembros(){
+    document.getElementById("membersModal").style.display = "none";
+}
+</script>
+
+</body>
+</html>
