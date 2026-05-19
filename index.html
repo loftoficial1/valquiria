@@ -6,6 +6,7 @@
 <title>VALK HUB</title>
 
 <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,13 +14,13 @@
 
 <div id="particles-js"></div>
 
-<!-- TOPO DIREITO (MEMBROS) -->
+<!-- MEMBROS -->
 <div class="top-right">
-  <button onclick="openMembers()">Membros</button>
+  <button onclick="openMembers(); playClick()" onmouseenter="playHover()">Membros</button>
 </div>
 
-<!-- DISCORD (CANTO INFERIOR DIREITO) -->
-<div class="discord-float" onclick="openDiscord()">
+<!-- DISCORD -->
+<div class="discord-float" onclick="openDiscord(); playClick()" onmouseenter="playHover()">
   <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
 </div>
 
@@ -28,12 +29,12 @@
   <h1>VALK</h1>
 
   <div class="buttons">
-    <button onclick="openRecruit()">Recrutamento</button>
-    <button onclick="openAbout()">Sobre</button>
+    <button onclick="openRecruit(); playClick()" onmouseenter="playHover()">Recrutamento</button>
+    <button onclick="openAbout(); playClick()" onmouseenter="playHover()">Sobre</button>
   </div>
 </div>
 
-<!-- RECRUTAMENTO -->
+<!-- MODAIS -->
 <div class="modal" id="recruitModal">
   <div class="modal-content">
     <span class="close" onclick="closeRecruit()">✖</span>
@@ -43,22 +44,18 @@
     <input id="age" placeholder="Idade">
     <textarea id="reason" placeholder="Por que quer entrar?"></textarea>
 
-    <button onclick="sendRecruit()">Enviar</button>
+    <button onclick="sendRecruit(); playClick()" onmouseenter="playHover()">Enviar</button>
   </div>
 </div>
 
-<!-- SOBRE -->
 <div class="modal" id="aboutModal">
   <div class="modal-content">
     <span class="close" onclick="closeAbout()">✖</span>
-    <h2>Sobre o Clan</h2>
-    <p>
-      VALK é um clan focado em PvP, estratégia e domínio total no servidor.
-    </p>
+    <h2>Sobre</h2>
+    <p>VALK é um clan focado em PvP, estratégia e domínio total.</p>
   </div>
 </div>
 
-<!-- MEMBROS -->
 <div class="modal" id="membersModal">
   <div class="modal-content">
     <span class="close" onclick="closeMembers()">✖</span>
@@ -67,7 +64,6 @@
   </div>
 </div>
 
-<!-- DISCORD -->
 <div class="modal" id="discordModal">
   <div class="modal-content">
     <span class="close" onclick="closeDiscord()">✖</span>
@@ -80,6 +76,10 @@
     </iframe>
   </div>
 </div>
+
+<!-- SONS -->
+<audio id="hoverSound" src="https://www.myinstants.com/media/sounds/menu-click.wav"></audio>
+<audio id="clickSound" src="https://www.myinstants.com/media/sounds/mouse-click.wav"></audio>
 
 <script src="script.js"></script>
 </body>
