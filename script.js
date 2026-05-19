@@ -1,4 +1,4 @@
-const MEMBERS_URL = "https://raw.githubusercontent.com/SEU_USUARIO/SEU_REPO/main/members.json";
+const MEMBERS_URL = "https://raw.githubusercontent.com/loftoficial1/valquiria/main/members.json";
 
 async function loadMembers() {
     try {
