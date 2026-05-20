@@ -17,9 +17,27 @@ particlesJS("particles-js", {
    ELEMENTOS (SAFE)
 ========================= */
 
-const menu = document.getElementById("menu");
-const recruitBtn = document.getElementById("recruitBtn");
-const aboutBtn = document.getElementById("aboutBtn");
+window.addEventListener("DOMContentLoaded", () => {
+
+  const menu = document.getElementById("menu");
+  const recruitBtn = document.getElementById("recruitBtn");
+  const aboutBtn = document.getElementById("aboutBtn");
+
+  if (!menu || !recruitBtn || !aboutBtn) return;
+
+  recruitBtn.addEventListener("mouseover", () => {
+    menu.style.transform = "rotateY(-8deg) scale(1.03)";
+  });
+
+  aboutBtn.addEventListener("mouseover", () => {
+    menu.style.transform = "rotateY(8deg) scale(1.03)";
+  });
+
+  document.querySelector(".buttons")?.addEventListener("mouseleave", () => {
+    menu.style.transform = "rotateY(0deg) scale(1)";
+  });
+
+});
 
 /* =========================
    CAMERA (ANTI BUG)
